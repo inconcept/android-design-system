@@ -15,7 +15,7 @@ import com.inconceptlabs.designsystem.theme.colors.ColorScheme
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
-private val LocalColors = staticCompositionLocalOf<ColorScheme> { ColorScheme.Default }
+private val LocalColors = staticCompositionLocalOf { ColorScheme.Default }
 
 private val LocalTypography = staticCompositionLocalOf { Typography.Default }
 
