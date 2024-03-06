@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "android-design-system"
 
-include(":app")
+include(":library")
