@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+
+    id("maven-publish")
 }
 
 android {
@@ -46,6 +48,20 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.inconcept"
+            artifactId = rootProject.name
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
         }
     }
 }

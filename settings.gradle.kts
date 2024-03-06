@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "design-system"
+rootProject.name = "android-design-system"
 
 include(":app")
