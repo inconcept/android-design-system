@@ -4,10 +4,8 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -69,19 +67,6 @@ fun getStrokeWidth(size: Size): Dp {
         Size.M,
         Size.L -> strokeWidthThick
     }
-}
-
-fun Modifier.clickable(
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = MutableInteractionSource(),
-    action: () -> Unit,
-): Modifier {
-    return this.clickable(
-        enabled = enabled,
-        indication = null,
-        interactionSource = interactionSource,
-        onClick = action
-    )
 }
 
 fun Modifier.clearFocusOnGesture(): Modifier {

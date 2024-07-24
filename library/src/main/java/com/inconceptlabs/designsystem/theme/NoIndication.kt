@@ -17,6 +17,8 @@ object NoIndication : Indication {
 
     object NoIndicationInstance : IndicationInstance {
 
-        override fun ContentDrawScope.drawIndication() = Unit
+        override fun ContentDrawScope.drawIndication() {
+            drawContent()
+        }
     }
 }

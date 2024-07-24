@@ -1,8 +1,10 @@
 package com.inconceptlabs.designsystem.components.buttons
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -36,7 +38,6 @@ import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
 import com.inconceptlabs.designsystem.theme.tokens.ButtonTokens
-import com.inconceptlabs.designsystem.utils.clickable
 import com.inconceptlabs.designsystem.utils.getStrokeWidth
 
 @Preview
@@ -120,7 +121,8 @@ fun Button(
                 .clickable(
                     enabled = isEnabled,
                     interactionSource = interactionSource,
-                    action = onClick
+                    indication = LocalIndication.current,
+                    onClick = onClick
                 )
                 .defaultMinSize(
                     minWidth = if (hasMinWidth) minWidth(size) else Dp.Unspecified,

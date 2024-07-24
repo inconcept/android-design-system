@@ -3,6 +3,7 @@ package com.inconceptlabs.designsystem.components.input
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
@@ -48,7 +49,6 @@ import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
 import com.inconceptlabs.designsystem.theme.tokens.InputFormTokens
 import com.inconceptlabs.designsystem.theme.tokens.InputFormTokensImpl
-import com.inconceptlabs.designsystem.utils.clickable
 import com.inconceptlabs.designsystem.utils.getStrokeWidth
 
 /**
@@ -321,7 +321,7 @@ private fun InputIcon(
         tint = tint,
         modifier = Modifier
             .defaultMinSize(size, size)
-            .clickable(action = onClick)
+            .clickable(onClick = onClick)
             .then(modifier)
     )
 }
