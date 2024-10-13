@@ -6,12 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
+import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
@@ -24,6 +26,8 @@ val LocalTextStyle = staticCompositionLocalOf { TextStyle.Default }
 val LocalContentColor = staticCompositionLocalOf { Color.White }
 
 val LocalIconSize = staticCompositionLocalOf { Dp.Unspecified }
+
+val LocalEmptyItemTokens = compositionLocalOf { EmptyItemTokens.Default }
 
 /**
  * Contains functions to access the current theme values provided
@@ -64,12 +68,14 @@ fun AppTheme(
     colorScheme: ColorScheme = ColorScheme.Light,
     typography: Typography = Barlow,
     indication: Indication = NoIndication,
+    emptyItemTokens: EmptyItemTokens = EmptyItemTokens.Default,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalColors provides colorScheme,
         LocalTypography provides typography,
         LocalIndication provides indication,
+        LocalEmptyItemTokens provides emptyItemTokens,
     ) {
         content()
     }

@@ -9,11 +9,17 @@ import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.fragment.app.Fragment
+import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.NoIndication
 import com.inconceptlabs.designsystem.theme.attributes.Size
@@ -28,6 +34,7 @@ fun Fragment.ProvideThemedContent(
     colorScheme: ColorScheme = ColorScheme.Light,
     typography: Typography = Barlow,
     indication: Indication = NoIndication,
+    emptyItemTokens: EmptyItemTokens = EmptyItemTokens.Default,
     content: @Composable () -> Unit,
 ): View {
     return ComposeView(requireContext()).apply {
@@ -36,6 +43,7 @@ fun Fragment.ProvideThemedContent(
                 colorScheme = colorScheme,
                 typography = typography,
                 indication = indication,
+                emptyItemTokens = emptyItemTokens,
                 content = content
             )
         }
@@ -47,6 +55,7 @@ fun ComponentActivity.ProvideThemedContent(
     colorScheme: ColorScheme = ColorScheme.Light,
     typography: Typography = Barlow,
     indication: Indication = NoIndication,
+    emptyItemTokens: EmptyItemTokens = EmptyItemTokens.Default,
     content: @Composable () -> Unit,
 ) {
     setContent {
@@ -54,7 +63,8 @@ fun ComponentActivity.ProvideThemedContent(
             colorScheme = colorScheme,
             typography = typography,
             indication = indication,
-            content = content
+            emptyItemTokens = emptyItemTokens,
+            content = content,
         )
     }
 }
@@ -81,6 +91,34 @@ fun Modifier.clearFocusOnGesture(): Modifier {
             detectTapGestures {
                 focusManager.clearFocus()
             }
+        }
+    }
+}
+
+fun Modifier.dashedBorder(
+    color: Color,
+    cornerRadius: Dp,
+    dashWidth: Dp,
+    dashGap: Dp = dashWidth,
+    strokeWidth: Dp = strokeWidthThin,
+): Modifier {
+    return drawWithCache {
+        onDrawBehind {
+            drawRoundRect(
+                color = color,
+                cornerRadius = CornerRadius(
+                    x = cornerRadius.toPx()
+                ),
+                style = Stroke(
+                    width = strokeWidth.toPx(),
+                    pathEffect = PathEffect.dashPathEffect(
+                        intervals = floatArrayOf(
+                            dashWidth.toPx(),
+                            dashGap.toPx()
+                        ),
+                    )
+                )
+            )
         }
     }
 }
