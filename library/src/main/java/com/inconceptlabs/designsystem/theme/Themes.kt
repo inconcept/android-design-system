@@ -17,7 +17,7 @@ import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
-private val LocalColors = staticCompositionLocalOf { ColorScheme.Default }
+private val LocalColorScheme = staticCompositionLocalOf { ColorScheme.Default }
 
 private val LocalTypography = staticCompositionLocalOf { Typography.Default }
 
@@ -42,7 +42,7 @@ object AppTheme {
     val colorScheme: ColorScheme
         @Composable
         @ReadOnlyComposable
-        get() = LocalColors.current
+        get() = LocalColorScheme.current
 
 
     /**
@@ -72,7 +72,7 @@ fun AppTheme(
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
-        LocalColors provides colorScheme,
+        LocalColorScheme provides colorScheme,
         LocalTypography provides typography,
         LocalIndication provides indication,
         LocalEmptyItemTokens provides emptyItemTokens,
