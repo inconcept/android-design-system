@@ -12,8 +12,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.components.buttons.TextButton
 import com.inconceptlabs.designsystem.components.core.Icon
+import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.core.Text
-import com.inconceptlabs.designsystem.theme.LocalEmptyItemTokens
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
 import com.inconceptlabs.designsystem.utils.dashedBorder
@@ -71,6 +71,7 @@ fun EmptyItem(
             .fillMaxWidth()
             .dashedBorder(
                 color = paletteColors.alpha50,
+                strokeWidth = LocalCoreTokens.current.strokeWidthThin,
                 cornerRadius = cornerRadius,
                 dashWidth = dashWidth,
                 dashGap = dashGap,

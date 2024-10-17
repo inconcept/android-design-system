@@ -8,8 +8,6 @@ A collection of reusable UI components built with **Jetpack Compose** to streaml
 > legacy *Groovy* version, the overall setup is the same, except for 
 > few syntax differences, which can be found [here](https://docs.gradle.org/current/userguide/migrating_from_groovy_to_kotlin_dsl.html)
 
-###
-
 1. Add the *Jitpack* repository to your project level `build.gradle` file, at the end of `repositories` block
 ```kotlin
 repositories {
@@ -38,7 +36,7 @@ That's it!
 
 ## Usage
 
-There's a utility function `ProvideThemedContent` for both *Fragment* and `ComponentActivity`, which provides `AppTheme` context inside of it, where you can to put your screen/view/content. This function then needs to be returned as the *Fragment's View*. 
+There's a utility function `ProvideThemedContent` for both *Fragment* and `ComponentActivity`, which provides `AppTheme` context inside of it, where you can put your screen/view/content. This function must then be returned as the *Fragment's View*.
 
 > *MyFragment.kt*
 ```kotlin
@@ -66,10 +64,10 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ## Customization
 
-Customization was one the key properties we kept in mind while building this library. It allows you to define **your own** *Typography*, *Color Scheme* and *Components*, which are the key components of design system and theming in general. You also have the ability to change the current implementation of components by using *Tokens*.
+Customization was one of the key properties we kept in mind while building this library. It allows you to define **your own** *Typography*, *Color Scheme* and *Components*, the key components of a design system and theming in general. You can also change the components’ current implementation using *Tokens*.
 
 #### Typography
-Default implementation uses *Barlow* font-family, but imagine we want to use *Poppins* for our app. For that, we'll just need to implement `Typography` interface, and override all of its properties.
+The default implementation uses *Barlow* font-family, but imagine we want to use *Poppins* for our app. For that, we'll need to implement the `Typography` interface and override all of its properties.
 ```kotlin
 object Poppins : Typography {  
   
@@ -117,4 +115,43 @@ Text(
 
 #### Color Scheme
 
-Same principle applies to defining our custom *Color Scheme*, dark mode  for example or just other variation. We first implement the `ColorScheme` interface, then apply it `AppTheme`.
+The same principles apply to defining our custom *Color Scheme*, dark mode, for example. We first implement the `ColorScheme` interface, then apply it to `AppTheme`
+
+#### Tokens
+In any design system, certain properties are designed to be customizable, such as - `KeyColor` or `ButtonType`, while others, like the dash width of `EmptyItem`, remain static. Customizable properties are presented via function parameters, while static properties are defined via tokens in `ThemeTokens`
+
+`ThemeTokens` is a wrapper class that contains *design-system* specific *tokens*. These tokens configure component properties, which otherwise would have been constants.
+
+Each of the containing tokens has a `ProvidableCompositionLocal` with a "Local" prefix (for example `LocalButtonTokens`), is provided within `AppTheme,` and used by library components via `Local*Tokens.current`. We can change these tokens at theme-level or for a smaller scope,  like for a specific screen. Examples are provided below.
+
+Example of configuring `CoreTokens` for the entire application
+```Kotlin
+@Composable
+fun ApplicationContent() {
+    AppTheme(
+        appTokens = AppTokens(
+            coreTokens = CoreTokens(
+                strokeWidthThin = 1.5.dp,
+                strokeWidthThick = 3.dp,
+            )
+        ),
+        content = { /*...*/ }
+    )
+}
+```
+
+Example of configuring `EmptyItemTokens` for a smaller scope
+```kotlin
+@Composable
+fun SomeScreen() {
+    val customTokens = EmptyItemTokens(
+        cornerRadius = 16.dp,
+    )
+
+    CompositionLocalProvider(
+        LocalEmptyItemTokens provides customTokens,
+    ) {
+        //...
+    }
+}
+```

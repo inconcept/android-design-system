@@ -9,12 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import com.inconceptlabs.designsystem.theme.AppTheme
-import com.inconceptlabs.designsystem.theme.tokens.strokeWidthThin
 
 @Composable
 fun Divider(
     modifier: Modifier = Modifier,
-    thickness: Dp = strokeWidthThin,
+    thickness: Dp = LocalCoreTokens.current.strokeWidthThin,
     color: Color = AppTheme.colorScheme.T3,
 ) {
     Box(

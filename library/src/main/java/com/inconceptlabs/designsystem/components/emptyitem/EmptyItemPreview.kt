@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.R
 import com.inconceptlabs.designsystem.theme.AppTheme
-import com.inconceptlabs.designsystem.theme.LocalEmptyItemTokens
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
 
