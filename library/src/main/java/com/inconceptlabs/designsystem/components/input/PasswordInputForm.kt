@@ -17,8 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
-import com.inconceptlabs.designsystem.theme.tokens.PasswordInputFormTokens
-import com.inconceptlabs.designsystem.theme.tokens.PasswordInputFormTokensImpl
 
 @Preview(
     showBackground = true,
@@ -52,8 +50,7 @@ fun PasswordInputForm(
     @StringRes errorMessageRes: Int? = null,
     @StringRes additionalInfo: Int? = null,
     titleIcon: Painter? = null,
-    tokens: PasswordInputFormTokens = PasswordInputFormTokensImpl,
-) = with (tokens) {
+) = with (LocalPasswordInputFormTokens.current) {
     var passwordVisible by remember { mutableStateOf(false) }
 
     val visualTransformation = if (passwordVisible) {
@@ -85,6 +82,6 @@ fun PasswordInputForm(
         additionalInfo = additionalInfo,
         titleIcon = titleIcon,
         startIcon = painterResource(startIconRes),
-        endIcon = painterResource(id = getEndIconRes(passwordVisible)),
+        endIcon = painterResource(id = endIconRes(passwordVisible)),
     )
 }

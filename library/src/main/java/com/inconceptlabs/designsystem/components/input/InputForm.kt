@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.R
 import com.inconceptlabs.designsystem.components.core.Icon
+import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.core.Text
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.LocalContentColor
@@ -47,9 +48,6 @@ import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
-import com.inconceptlabs.designsystem.theme.tokens.InputFormTokens
-import com.inconceptlabs.designsystem.theme.tokens.InputFormTokensImpl
-import com.inconceptlabs.designsystem.utils.getStrokeWidth
 
 /**
  * Compose currently doesn't provide a way of customizing the cursor's height
@@ -103,7 +101,6 @@ fun InputForm(
     titleIcon: Painter? = null,
     startIcon: Painter? = null,
     endIcon: Painter? = null,
-    tokens: InputFormTokens = InputFormTokensImpl,
 ) {
     require(title == null || title.isNotBlank()) { "Parameter `title` must not be blank!" }
     require(size != Size.XXS) { "`Size.XXS` not supported for `InputForm`" }
@@ -153,7 +150,6 @@ fun InputForm(
                         title = title,
                         titleIcon = titleIcon,
                         size = size,
-                        tokens = tokens
                     )
                 }
 
@@ -168,7 +164,6 @@ fun InputForm(
                     keyColor = keyColor,
                     hint = hint,
                     isHintVisible = input.isEmpty(),
-                    tokens = tokens
                 )
 
                 InputFooter(
@@ -188,8 +183,7 @@ private fun InputHeader(
     title: String,
     titleIcon: Painter? = null,
     size: Size,
-    tokens: InputFormTokens,
-) = with(tokens) {
+) = with(LocalInputFormTokens.current) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -204,7 +198,7 @@ private fun InputHeader(
         if (titleIcon != null) {
             InputIcon(
                 painter = titleIcon,
-                size = size.titleIconSize
+                size = titleIconSize(size),
             )
         }
     }
@@ -222,9 +216,8 @@ private fun InputRow(
     state: InputFormState,
     keyColor: KeyColor,
     innerTextField: @Composable () -> Unit,
-    tokens: InputFormTokens,
-) = with(tokens) {
-    val shape = RoundedCornerShape(size.cornerRadius)
+) = with(LocalInputFormTokens.current) {
+    val shape = RoundedCornerShape(cornerRadius(size))
 
     val palette = keyColor.paletteColors()
 
@@ -236,7 +229,7 @@ private fun InputRow(
                 shape = shape
             )
             .border(
-                width = getStrokeWidth(size = size),
+                width = LocalCoreTokens.current.strokeWidthBySize(size),
                 color = strokeColor(type, state),
                 shape = shape
             )
@@ -247,7 +240,7 @@ private fun InputRow(
             InputIcon(
                 painter = startIcon,
                 tint = startIconColor(state = state, paletteColors = palette),
-                size = size.formIconSize,
+                size = formIconSize(size),
                 modifier = Modifier
                     .padding(end = startIconPadding)
             )
@@ -267,7 +260,7 @@ private fun InputRow(
             InputIcon(
                 painter = endIcon,
                 tint = endIconColor(state = state),
-                size = size.formIconSize,
+                size = formIconSize(size),
                 onClick = onEndIconClick,
                 modifier = Modifier
                     .padding(start = endIconPadding)

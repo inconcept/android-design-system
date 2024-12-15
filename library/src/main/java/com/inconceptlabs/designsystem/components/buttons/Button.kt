@@ -28,6 +28,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.LocalContentColor
 import com.inconceptlabs.designsystem.theme.LocalIconSize
@@ -37,8 +38,6 @@ import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
-import com.inconceptlabs.designsystem.theme.tokens.ButtonTokens
-import com.inconceptlabs.designsystem.utils.getStrokeWidth
 
 @Preview
 @Composable
@@ -65,7 +64,6 @@ private fun ComponentPreview() {
  * @param interactionSource the [MutableInteractionSource] representing the stream of [Interaction]s
  * for this button. You can create and pass in your own `remember`ed instance to observe
  * [Interaction]s and customize the appearance / behavior of this button in different states.
- * @param tokens [ButtonTokens] for customizing the button's appearance.
  * @param content Content block for the button's internal content layout.
  */
 @Composable
@@ -79,9 +77,8 @@ fun Button(
     hasMinWidth: Boolean = true,
     cornerType: CornerType = CornerType.ROUNDED,
     interactionSource: MutableInteractionSource = remember(::MutableInteractionSource),
-    tokens: ButtonTokens = ButtonTokens.default,
-    content: @Composable (RowScope.() -> Unit),
-) = with(tokens) {
+    content: @Composable RowScope.() -> Unit,
+) = with(LocalButtonTokens.current) {
     val isPressed by interactionSource.collectIsPressedAsState()
 
     val shape = when (cornerType) {
@@ -112,7 +109,7 @@ fun Button(
                 .background(containerColor, shape)
                 .border(
                     border = BorderStroke(
-                        width = getStrokeWidth(size),
+                        width = LocalCoreTokens.current.strokeWidthBySize(size),
                         color = colors.strokeColor.forState(isEnabled, isPressed)
                     ),
                     shape = shape

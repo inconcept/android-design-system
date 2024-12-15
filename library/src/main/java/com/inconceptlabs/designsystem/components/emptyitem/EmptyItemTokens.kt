@@ -2,12 +2,15 @@ package com.inconceptlabs.designsystem.components.emptyitem
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.attributes.Size
+
+val LocalEmptyItemTokens = compositionLocalOf { EmptyItemTokens.Default }
 
 data class EmptyItemTokens(
     val paddingValues: PaddingValues = PaddingValues(

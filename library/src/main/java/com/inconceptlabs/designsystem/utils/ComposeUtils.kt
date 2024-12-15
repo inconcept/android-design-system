@@ -19,13 +19,10 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.fragment.app.Fragment
-import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.NoIndication
-import com.inconceptlabs.designsystem.theme.attributes.Size
+import com.inconceptlabs.designsystem.theme.ThemeTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
-import com.inconceptlabs.designsystem.theme.tokens.strokeWidthThick
-import com.inconceptlabs.designsystem.theme.tokens.strokeWidthThin
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
@@ -34,7 +31,7 @@ fun Fragment.ProvideThemedContent(
     colorScheme: ColorScheme = ColorScheme.Light,
     typography: Typography = Barlow,
     indication: Indication = NoIndication,
-    emptyItemTokens: EmptyItemTokens = EmptyItemTokens.Default,
+    themeTokens: ThemeTokens = ThemeTokens.Default,
     content: @Composable () -> Unit,
 ): View {
     return ComposeView(requireContext()).apply {
@@ -43,7 +40,7 @@ fun Fragment.ProvideThemedContent(
                 colorScheme = colorScheme,
                 typography = typography,
                 indication = indication,
-                emptyItemTokens = emptyItemTokens,
+                tokens = themeTokens,
                 content = content
             )
         }
@@ -55,7 +52,7 @@ fun ComponentActivity.ProvideThemedContent(
     colorScheme: ColorScheme = ColorScheme.Light,
     typography: Typography = Barlow,
     indication: Indication = NoIndication,
-    emptyItemTokens: EmptyItemTokens = EmptyItemTokens.Default,
+    themeTokens: ThemeTokens = ThemeTokens.Default,
     content: @Composable () -> Unit,
 ) {
     setContent {
@@ -63,19 +60,9 @@ fun ComponentActivity.ProvideThemedContent(
             colorScheme = colorScheme,
             typography = typography,
             indication = indication,
-            emptyItemTokens = emptyItemTokens,
+            tokens = themeTokens,
             content = content,
         )
-    }
-}
-
-fun getStrokeWidth(size: Size): Dp {
-    return when (size) {
-        Size.XXS,
-        Size.XS -> strokeWidthThin
-        Size.S,
-        Size.M,
-        Size.L -> strokeWidthThick
     }
 }
 
@@ -98,9 +85,9 @@ fun Modifier.clearFocusOnGesture(): Modifier {
 fun Modifier.dashedBorder(
     color: Color,
     cornerRadius: Dp,
+    strokeWidth: Dp,
     dashWidth: Dp,
     dashGap: Dp = dashWidth,
-    strokeWidth: Dp = strokeWidthThin,
 ): Modifier {
     return drawWithCache {
         onDrawBehind {
