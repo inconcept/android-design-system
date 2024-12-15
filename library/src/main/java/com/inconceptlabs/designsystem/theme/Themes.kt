@@ -5,12 +5,10 @@ import androidx.compose.foundation.LocalIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.inconceptlabs.designsystem.components.buttons.LocalButtonTokens
 import com.inconceptlabs.designsystem.components.buttons.LocalIconButtonTokens
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
@@ -83,19 +81,5 @@ fun AppTheme(
         LocalEmptyItemTokens provides tokens.emptyItem,
     ) {
         content()
-    }
-}
-
-/**
- * Composable that adjusts the system status bar color to the specified color.
- *
- * @param color Color to set for the system status bar.
- */
-@Composable
-fun StatusBarColor(color: Color = Color.White) {
-    val systemUiController = rememberSystemUiController()
-
-    SideEffect {
-        systemUiController.setSystemBarsColor(color = color)
     }
 }
