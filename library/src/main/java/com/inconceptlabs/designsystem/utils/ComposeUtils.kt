@@ -20,9 +20,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.fragment.app.Fragment
 import com.inconceptlabs.designsystem.theme.AppTheme
-import com.inconceptlabs.designsystem.theme.NoIndication
 import com.inconceptlabs.designsystem.theme.ThemeTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
+import com.inconceptlabs.designsystem.theme.indication.NoIndication
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
