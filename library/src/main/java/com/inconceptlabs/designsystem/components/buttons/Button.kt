@@ -23,32 +23,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
-import com.inconceptlabs.designsystem.theme.AppTheme
+import com.inconceptlabs.designsystem.components.ButtonState
+import com.inconceptlabs.designsystem.components.buttons.token.LocalButtonTokens
+import com.inconceptlabs.designsystem.theme.LocalComponentState
 import com.inconceptlabs.designsystem.theme.LocalContentColor
 import com.inconceptlabs.designsystem.theme.LocalIconSize
 import com.inconceptlabs.designsystem.theme.LocalTextStyle
 import com.inconceptlabs.designsystem.theme.attributes.CornerType
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
-import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
-
-@Preview
-@Composable
-private fun ComponentPreview() {
-    AppTheme {
-        Button(
-            onClick = {},
-            content = {}
-        )
-    }
-}
 
 /**
  * Composable that creates a clickable button with customizable size, appearance, and content.
@@ -88,31 +73,28 @@ fun Button(
 
     val palette = keyColor.paletteColors()
 
-    val colors = ButtonColors(
-        containerColor = containerColor(type, palette),
-        strokeColor = strokeColor(type, palette),
-        contentColor = contentColor(type, palette),
-    )
-
-    val containerColor = colors.containerColor.forState(isEnabled, isPressed)
-    val contentColor = colors.contentColor.forState(isEnabled, isPressed)
-    val textStyle = textStyle(size)
+    val state = when {
+        !isEnabled -> ButtonState.Disabled
+        isPressed -> ButtonState.Pressed
+        else -> ButtonState.Default
+    }
 
     CompositionLocalProvider(
-        LocalContentColor provides contentColor,
-        LocalTextStyle provides textStyle,
-        LocalIconSize provides iconSize(size),
+        LocalComponentState providesDefault state,
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = modifier
-                .background(containerColor, shape)
+                .background(
+                    color = containerColor(type, palette),
+                    shape = shape
+                )
                 .border(
                     border = BorderStroke(
-                        width = LocalCoreTokens.current.strokeWidthBySize(size),
-                        color = colors.strokeColor.forState(isEnabled, isPressed)
+                        width = strokeWidth(size),
+                        color = strokeColor(type, palette),
                     ),
-                    shape = shape
+                    shape = shape,
                 )
                 .clip(shape)
                 .clickable(
@@ -122,7 +104,7 @@ fun Button(
                     onClick = onClick
                 )
                 .defaultMinSize(
-                    minWidth = if (hasMinWidth) minWidth(size) else Dp.Unspecified,
+                    minWidth = minWidth(size).takeIf { hasMinWidth } ?: Dp.Unspecified,
                     minHeight = height(size)
                 ),
         ) {
@@ -131,91 +113,16 @@ fun Button(
                     .padding(paddingValues = contentPadding(size)),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                content = content
+                content = {
+                    CompositionLocalProvider(
+                        LocalContentColor provides contentColor(type, palette),
+                        LocalTextStyle provides textStyle(size),
+                        LocalIconSize provides iconSize(size),
+                    ) {
+                        content()
+                    }
+                }
             )
         }
-    }
-}
-
-@Composable
-private fun height(size: Size): Dp {
-    return when (size) {
-        Size.XXS -> 24.dp
-        Size.XS -> 36.dp
-        Size.S -> 40.dp
-        Size.M -> 48.dp
-        Size.L -> 56.dp
-    }
-}
-
-@Composable
-private fun containerColor(type: ButtonType, palette: PaletteColors): ButtonColorState {
-    return ButtonColorState(
-        default = when (type) {
-            ButtonType.PRIMARY -> palette.main
-            ButtonType.SECONDARY -> AppTheme.colorScheme.BG4
-            ButtonType.TEXT -> Color.Transparent
-            ButtonType.OUTLINE -> Color.Transparent
-        },
-        pressed = when (type) {
-            ButtonType.PRIMARY -> palette.dark5
-            else -> palette.alpha10
-        },
-        disabled = when (type) {
-            ButtonType.PRIMARY,
-            ButtonType.SECONDARY -> AppTheme.colorScheme.BG2
-            ButtonType.TEXT,
-            ButtonType.OUTLINE -> Color.Transparent
-        }
-    )
-}
-
-@Composable
-private fun strokeColor(type: ButtonType, palette: PaletteColors): ButtonColorState {
-    return ButtonColorState(
-        default = when (type) {
-            ButtonType.PRIMARY -> palette.main
-            ButtonType.SECONDARY -> AppTheme.colorScheme.BG4
-            ButtonType.TEXT -> Color.Transparent
-            ButtonType.OUTLINE -> palette.alpha50
-        },
-        pressed = when (type) {
-            ButtonType.PRIMARY -> palette.dark5
-            else -> palette.alpha10
-        },
-        disabled = when (type) {
-            ButtonType.PRIMARY,
-            ButtonType.SECONDARY -> AppTheme.colorScheme.BG2
-            ButtonType.TEXT -> Color.Transparent
-            ButtonType.OUTLINE -> AppTheme.colorScheme.BG4
-        }
-    )
-}
-
-@Composable
-private fun contentColor(type: ButtonType, palette: PaletteColors): ButtonColorState {
-    return ButtonColorState(
-        default = when (type) {
-            ButtonType.PRIMARY -> Color.White
-            ButtonType.SECONDARY -> AppTheme.colorScheme.T8
-            ButtonType.TEXT -> AppTheme.colorScheme.T8
-            ButtonType.OUTLINE -> AppTheme.colorScheme.T8
-        },
-        pressed = when (type) {
-            ButtonType.PRIMARY -> AppTheme.colorScheme.T1
-            else -> palette.dark5
-        },
-        disabled = AppTheme.colorScheme.T4
-    )
-}
-
-@Composable
-private fun textStyle(size: Size): TextStyle {
-    return when (size) {
-        Size.XXS -> AppTheme.typography.B6
-        Size.XS -> AppTheme.typography.B5
-        Size.S -> AppTheme.typography.B4
-        Size.M -> AppTheme.typography.B3
-        Size.L -> AppTheme.typography.B2
     }
 }

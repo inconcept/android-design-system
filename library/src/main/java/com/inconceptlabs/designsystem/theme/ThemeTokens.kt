@@ -1,9 +1,9 @@
 package com.inconceptlabs.designsystem.theme
 
 import androidx.compose.runtime.ProvidableCompositionLocal
-import com.inconceptlabs.designsystem.components.buttons.ButtonTokens
 import com.inconceptlabs.designsystem.components.buttons.ButtonType
-import com.inconceptlabs.designsystem.components.buttons.LocalButtonTokens
+import com.inconceptlabs.designsystem.components.buttons.token.ButtonTokens
+import com.inconceptlabs.designsystem.components.buttons.token.LocalButtonTokens
 import com.inconceptlabs.designsystem.components.core.CoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.EmptyItem
 import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
