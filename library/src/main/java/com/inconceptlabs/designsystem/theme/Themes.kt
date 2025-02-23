@@ -9,8 +9,9 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
-import com.inconceptlabs.designsystem.components.buttons.LocalButtonTokens
-import com.inconceptlabs.designsystem.components.buttons.LocalIconButtonTokens
+import com.inconceptlabs.designsystem.components.ComponentState
+import com.inconceptlabs.designsystem.components.buttons.token.LocalButtonTokens
+import com.inconceptlabs.designsystem.components.buttons.token.LocalIconButtonTokens
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.LocalEmptyItemTokens
 import com.inconceptlabs.designsystem.components.input.LocalInputFormTokens
@@ -23,6 +24,7 @@ import com.inconceptlabs.designsystem.theme.typography.Typography
 private val LocalColorScheme = compositionLocalOf { ColorScheme.Default }
 private val LocalTypography = compositionLocalOf { Typography.Default }
 
+val LocalComponentState = compositionLocalOf<ComponentState> { ComponentState.Default }
 val LocalTextStyle = compositionLocalOf { TextStyle.Default }
 val LocalContentColor = compositionLocalOf { Color.White }
 val LocalIconSize = compositionLocalOf { Dp.Unspecified }
