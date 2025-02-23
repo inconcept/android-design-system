@@ -65,6 +65,7 @@ data class ThemeTokens(
     val core: CoreTokens = CoreTokens.Default,
     val button: ButtonTokens = ButtonTokens.Default,
     val iconButton: ButtonTokens = ButtonTokens.Icon,
+    val tabItem: ButtonTokens = ButtonTokens.TabItem,
     val inputForm: InputFormTokens = InputFormTokens.Default,
     val passwordInputForm: PasswordInputFormTokens = PasswordInputFormTokens.Default,
     val emptyItem: EmptyItemTokens = EmptyItemTokens.Default,

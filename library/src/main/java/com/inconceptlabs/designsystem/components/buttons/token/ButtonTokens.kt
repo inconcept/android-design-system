@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.inconceptlabs.designsystem.components.buttons.ButtonType
+import com.inconceptlabs.designsystem.components.tabitem.TabItemTokens
 import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 
@@ -44,5 +45,6 @@ interface ButtonTokens {
 
         val Default: ButtonTokens = ButtonTokensImpl
         val Icon: ButtonTokens = IconButtonTokens
+        val TabItem: ButtonTokens = TabItemTokens()
     }
 }
