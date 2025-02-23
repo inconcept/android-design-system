@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -14,10 +15,16 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.AwaitPointerEventScope
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.changedToUp
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.util.fastAll
+import androidx.compose.ui.util.fastAny
 import androidx.fragment.app.Fragment
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.ThemeTokens
@@ -78,6 +85,33 @@ fun Modifier.clearFocusOnGesture(): Modifier {
             detectTapGestures {
                 focusManager.clearFocus()
             }
+        }
+    }
+}
+
+/**
+ * Custom pointer event handler that ignores out-of-bounds events.
+ *
+ * Unlike the standard [waitForUpOrCancellation], this function maintains
+ * the pressed state even when the pointer moves outside the composable's bounds.
+ * It mimics traditional Android touch listener behavior, only changing state
+ */
+suspend fun AwaitPointerEventScope.waitForUpOrCancellationIgnoringBounds(
+    pass: PointerEventPass = PointerEventPass.Main,
+): PointerInputChange? {
+    while (true) {
+        val event = awaitPointerEvent(pass)
+        if (event.changes.fastAll { it.changedToUp() }) {
+            return event.changes[0]
+        }
+
+        if (event.changes.fastAny { it.isConsumed }) {
+            return null
+        }
+
+        val consumeCheck = awaitPointerEvent(PointerEventPass.Final)
+        if (consumeCheck.changes.fastAny { it.isConsumed }) {
+            return null
         }
     }
 }

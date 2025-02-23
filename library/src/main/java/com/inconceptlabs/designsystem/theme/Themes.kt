@@ -16,6 +16,7 @@ import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.LocalEmptyItemTokens
 import com.inconceptlabs.designsystem.components.input.LocalInputFormTokens
 import com.inconceptlabs.designsystem.components.input.LocalPasswordInputFormTokens
+import com.inconceptlabs.designsystem.components.tabitem.LocalIconTabItemTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
 import com.inconceptlabs.designsystem.theme.indication.NoIndication
 import com.inconceptlabs.designsystem.theme.typography.Barlow
@@ -79,6 +80,7 @@ fun AppTheme(
         LocalCoreTokens provides tokens.core,
         LocalButtonTokens provides tokens.button,
         LocalIconButtonTokens provides tokens.iconButton,
+        LocalIconTabItemTokens provides tokens.iconTabItem,
         LocalInputFormTokens provides tokens.inputForm,
         LocalPasswordInputFormTokens provides tokens.passwordInputForm,
         LocalEmptyItemTokens provides tokens.emptyItem,
