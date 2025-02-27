@@ -14,8 +14,8 @@ import com.inconceptlabs.designsystem.components.buttons.token.LocalButtonTokens
 import com.inconceptlabs.designsystem.components.buttons.token.LocalIconButtonTokens
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.LocalEmptyItemTokens
-import com.inconceptlabs.designsystem.components.input.LocalInputFormTokens
-import com.inconceptlabs.designsystem.components.input.LocalPasswordInputFormTokens
+import com.inconceptlabs.designsystem.components.input.tokens.LocalInputFormTokens
+import com.inconceptlabs.designsystem.components.input.tokens.LocalPasswordInputFormTokens
 import com.inconceptlabs.designsystem.components.tabitem.LocalTabItemTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
 import com.inconceptlabs.designsystem.theme.indication.NoIndication

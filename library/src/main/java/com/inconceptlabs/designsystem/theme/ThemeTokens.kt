@@ -7,8 +7,8 @@ import com.inconceptlabs.designsystem.components.buttons.token.LocalButtonTokens
 import com.inconceptlabs.designsystem.components.core.CoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.EmptyItem
 import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
-import com.inconceptlabs.designsystem.components.input.InputFormTokens
-import com.inconceptlabs.designsystem.components.input.PasswordInputFormTokens
+import com.inconceptlabs.designsystem.components.input.tokens.InputFormTokens
+import com.inconceptlabs.designsystem.components.input.tokens.PasswordInputFormTokens
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 
 /**
