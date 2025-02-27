@@ -27,11 +27,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
@@ -40,26 +38,13 @@ import com.inconceptlabs.designsystem.components.InputFormState
 import com.inconceptlabs.designsystem.components.core.Icon
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.core.Text
+import com.inconceptlabs.designsystem.components.input.tokens.InputFormTokens
 import com.inconceptlabs.designsystem.components.input.tokens.LocalInputFormTokens
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.LocalContentColor
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
-import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.colors.paletteColors
-
-/**
- * Compose currently doesn't provide a way of customizing the cursor's height
- * So we need to create a custom cursor brush to achieve the desired effect
- */
-private val cursorBrush = Brush.verticalGradient(
-    0.00f to Color.Transparent,
-    0.10f to Color.Transparent,
-    0.11f to Color.Black,
-    0.89f to Color.Black,
-    0.90f to Color.Transparent,
-    1.00f to Color.Transparent,
-)
 
 @Composable
 fun InputForm(
@@ -84,7 +69,7 @@ fun InputForm(
     titleIcon: Painter? = null,
     startIcon: Painter? = null,
     endIcon: Painter? = null,
-) {
+) = with(LocalInputFormTokens.current) {
     require(title == null || title.isNotBlank()) { "Parameter `title` must not be blank!" }
     require(size != Size.XXS) { "`Size.XXS` not supported for `InputForm`" }
 
@@ -162,11 +147,11 @@ fun InputForm(
 }
 
 @Composable
-private fun InputHeader(
+private fun InputFormTokens.InputHeader(
     title: String,
     titleIcon: Painter? = null,
     size: Size,
-) = with(LocalInputFormTokens.current) {
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -188,7 +173,7 @@ private fun InputHeader(
 }
 
 @Composable
-private fun InputRow(
+private fun InputFormTokens.InputRow(
     isHintVisible: Boolean,
     hint: String? = null,
     size: Size,
@@ -199,7 +184,7 @@ private fun InputRow(
     state: InputFormState,
     keyColor: KeyColor,
     innerTextField: @Composable () -> Unit,
-) = with(LocalInputFormTokens.current) {
+) {
     val shape = RoundedCornerShape(cornerRadius(size))
 
     val palette = keyColor.paletteColors()
@@ -222,7 +207,7 @@ private fun InputRow(
         if (startIcon != null) {
             InputIcon(
                 painter = startIcon,
-                tint = startIconColor(state = state, paletteColors = palette),
+                tint = startIconColor(state = state, palette = palette),
                 size = formIconSize(size),
                 modifier = Modifier
                     .padding(end = startIconPadding)
@@ -253,7 +238,7 @@ private fun InputRow(
 }
 
 @Composable
-private fun InputFooter(
+private fun InputFormTokens.InputFooter(
     state: InputFormState,
     @StringRes additionalInfo: Int? = null,
     isCharacterCounterVisible: Boolean = false,
@@ -303,7 +288,7 @@ private fun InputIcon(
 }
 
 @Composable
-private fun InputHint(
+private fun InputFormTokens.InputHint(
     hint: String,
     size: Size,
     state: InputFormState,
@@ -312,132 +297,4 @@ private fun InputHint(
         text = hint,
         style = hintTypography(size, state),
     )
-}
-
-@Composable
-private fun height(size: Size): Dp {
-    return when (size) {
-        Size.XXS,
-        Size.XS -> 36.dp
-        Size.S -> 40.dp
-        Size.M -> 48.dp
-        Size.L -> 56.dp
-    }
-}
-
-@Composable
-private fun titleTypography(size: Size): TextStyle {
-    return when (size) {
-        Size.XXS,
-        Size.XS,
-        Size.S -> AppTheme.typography.P5
-        Size.M,
-        Size.L -> AppTheme.typography.P4
-    }
-}
-
-@Composable
-private fun hintTypography(size: Size, state: InputFormState): TextStyle {
-    return inputTypography(size, state).copy(
-        color = hintColor(state)
-    )
-}
-
-@Composable
-private fun inputTypography(size: Size, state: InputFormState): TextStyle {
-    val typography = when (size) {
-        Size.XXS,
-        Size.XS -> AppTheme.typography.P5
-        Size.S -> AppTheme.typography.P4
-        Size.M -> AppTheme.typography.P3
-        Size.L -> AppTheme.typography.P3
-    }
-
-    return typography.copy(
-        color = inputColor(state)
-    )
-}
-
-@Composable
-private fun strokeColor(
-    type: InputFormType,
-    state: InputFormState,
-): Color {
-    return when {
-        state == InputFormState.Success -> AppTheme.colorScheme.success.main
-        state == InputFormState.Error -> AppTheme.colorScheme.error.main
-        type == InputFormType.Filled -> Color.Unspecified
-        state == InputFormState.Disabled -> AppTheme.colorScheme.BG5
-        state == InputFormState.Empty -> AppTheme.colorScheme.BG6
-        state == InputFormState.Focused -> AppTheme.colorScheme.BG6
-        state == InputFormState.Active -> AppTheme.colorScheme.BG6
-        else -> Color.Unspecified
-    }
-}
-
-@Composable
-private fun backgroundColor(
-    type: InputFormType,
-    state: InputFormState,
-): Color {
-    return when {
-        type == InputFormType.Outlined -> Color.Transparent
-        state == InputFormState.Focused -> AppTheme.colorScheme.BG5
-        else -> AppTheme.colorScheme.BG4
-    }
-}
-
-@Composable
-private fun inputColor(state: InputFormState): Color {
-    return when (state) {
-        InputFormState.Disabled -> AppTheme.colorScheme.T3
-        InputFormState.Empty -> AppTheme.colorScheme.T6
-        else -> AppTheme.colorScheme.T8
-    }
-}
-
-@Composable
-private fun hintColor(state: InputFormState): Color {
-    return when (state) {
-        InputFormState.Disabled -> AppTheme.colorScheme.T3
-        else -> AppTheme.colorScheme.T6
-    }
-}
-
-@Composable
-private fun startIconColor(
-    state: InputFormState,
-    paletteColors: PaletteColors,
-): Color {
-    return when (state) {
-        InputFormState.Disabled -> AppTheme.colorScheme.T3
-        InputFormState.Empty -> paletteColors.alpha50
-        InputFormState.Focused -> paletteColors.main
-        InputFormState.Active -> paletteColors.main
-        InputFormState.Success -> AppTheme.colorScheme.success.main
-        InputFormState.Error -> AppTheme.colorScheme.error.main
-    }
-}
-
-@Composable
-private fun endIconColor(
-    state: InputFormState,
-): Color {
-    return when (state) {
-        InputFormState.Disabled -> AppTheme.colorScheme.T3
-        InputFormState.Empty -> AppTheme.colorScheme.T6
-        else -> AppTheme.colorScheme.T8
-    }
-}
-
-@Composable
-private fun additionalTextColor(
-    state: InputFormState,
-): Color {
-    return when (state) {
-        InputFormState.Success -> AppTheme.colorScheme.success.main
-        InputFormState.Error -> AppTheme.colorScheme.error.main
-        InputFormState.Disabled -> AppTheme.colorScheme.T3
-        else -> AppTheme.colorScheme.T8
-    }
 }
