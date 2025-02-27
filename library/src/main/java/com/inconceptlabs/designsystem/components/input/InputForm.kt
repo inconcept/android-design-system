@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.inconceptlabs.designsystem.components.InputFormState
 import com.inconceptlabs.designsystem.components.core.Icon
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.core.Text
@@ -93,18 +94,18 @@ fun InputForm(
 
     var state by remember {
         val value = when {
-            isFocused -> InputFormState.FOCUSED
-            else -> InputFormState.EMPTY
+            isFocused -> InputFormState.Focused
+            else -> InputFormState.Empty
         }
         mutableStateOf(value)
     }
 
     LaunchedEffect(errorMessageRes, isFocused) {
         state = when {
-            errorMessageRes != null -> InputFormState.ERROR
-            isFocused -> InputFormState.FOCUSED
-            input.isEmpty() -> InputFormState.EMPTY
-            else -> InputFormState.ACTIVE
+            errorMessageRes != null -> InputFormState.Error
+            isFocused -> InputFormState.Focused
+            input.isEmpty() -> InputFormState.Empty
+            else -> InputFormState.Active
         }
     }
 
@@ -363,13 +364,13 @@ private fun strokeColor(
     state: InputFormState,
 ): Color {
     return when {
-        state == InputFormState.SUCCESS -> AppTheme.colorScheme.success.main
-        state == InputFormState.ERROR -> AppTheme.colorScheme.error.main
+        state == InputFormState.Success -> AppTheme.colorScheme.success.main
+        state == InputFormState.Error -> AppTheme.colorScheme.error.main
         type == InputFormType.FILLED -> Color.Unspecified
-        state == InputFormState.DISABLED -> AppTheme.colorScheme.BG5
-        state == InputFormState.EMPTY -> AppTheme.colorScheme.BG6
-        state == InputFormState.FOCUSED -> AppTheme.colorScheme.BG6
-        state == InputFormState.ACTIVE -> AppTheme.colorScheme.BG6
+        state == InputFormState.Disabled -> AppTheme.colorScheme.BG5
+        state == InputFormState.Empty -> AppTheme.colorScheme.BG6
+        state == InputFormState.Focused -> AppTheme.colorScheme.BG6
+        state == InputFormState.Active -> AppTheme.colorScheme.BG6
         else -> Color.Unspecified
     }
 }
@@ -379,11 +380,9 @@ private fun backgroundColor(
     type: InputFormType,
     state: InputFormState,
 ): Color {
-    // Previous implementation suggested colors BG5, BG4 for focused and
-    // other states, whereas in Figma they're BG3 and BG2 respectably
     return when {
         type == InputFormType.OUTLINE -> Color.Transparent
-        state == InputFormState.FOCUSED -> AppTheme.colorScheme.BG5
+        state == InputFormState.Focused -> AppTheme.colorScheme.BG5
         else -> AppTheme.colorScheme.BG4
     }
 }
@@ -391,8 +390,8 @@ private fun backgroundColor(
 @Composable
 private fun inputColor(state: InputFormState): Color {
     return when (state) {
-        InputFormState.DISABLED -> AppTheme.colorScheme.T3
-        InputFormState.EMPTY -> AppTheme.colorScheme.T6
+        InputFormState.Disabled -> AppTheme.colorScheme.T3
+        InputFormState.Empty -> AppTheme.colorScheme.T6
         else -> AppTheme.colorScheme.T8
     }
 }
@@ -400,7 +399,7 @@ private fun inputColor(state: InputFormState): Color {
 @Composable
 private fun hintColor(state: InputFormState): Color {
     return when (state) {
-        InputFormState.DISABLED -> AppTheme.colorScheme.T3
+        InputFormState.Disabled -> AppTheme.colorScheme.T3
         else -> AppTheme.colorScheme.T6
     }
 }
@@ -411,12 +410,12 @@ private fun startIconColor(
     paletteColors: PaletteColors,
 ): Color {
     return when (state) {
-        InputFormState.DISABLED -> AppTheme.colorScheme.T3
-        InputFormState.EMPTY -> paletteColors.alpha50
-        InputFormState.FOCUSED -> paletteColors.main
-        InputFormState.ACTIVE -> paletteColors.main
-        InputFormState.SUCCESS -> AppTheme.colorScheme.success.main
-        InputFormState.ERROR -> AppTheme.colorScheme.error.main
+        InputFormState.Disabled -> AppTheme.colorScheme.T3
+        InputFormState.Empty -> paletteColors.alpha50
+        InputFormState.Focused -> paletteColors.main
+        InputFormState.Active -> paletteColors.main
+        InputFormState.Success -> AppTheme.colorScheme.success.main
+        InputFormState.Error -> AppTheme.colorScheme.error.main
     }
 }
 
@@ -425,8 +424,8 @@ private fun endIconColor(
     state: InputFormState,
 ): Color {
     return when (state) {
-        InputFormState.DISABLED -> AppTheme.colorScheme.T3
-        InputFormState.EMPTY -> AppTheme.colorScheme.T6
+        InputFormState.Disabled -> AppTheme.colorScheme.T3
+        InputFormState.Empty -> AppTheme.colorScheme.T6
         else -> AppTheme.colorScheme.T8
     }
 }
@@ -436,9 +435,9 @@ private fun additionalTextColor(
     state: InputFormState,
 ): Color {
     return when (state) {
-        InputFormState.SUCCESS -> AppTheme.colorScheme.success.main
-        InputFormState.ERROR -> AppTheme.colorScheme.error.main
-        InputFormState.DISABLED -> AppTheme.colorScheme.T3
+        InputFormState.Success -> AppTheme.colorScheme.success.main
+        InputFormState.Error -> AppTheme.colorScheme.error.main
+        InputFormState.Disabled -> AppTheme.colorScheme.T3
         else -> AppTheme.colorScheme.T8
     }
 }

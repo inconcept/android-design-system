@@ -15,3 +15,12 @@ sealed interface TabItemState : ComponentState {
     data object Pressed : TabItemState
     data object Active : TabItemState
 }
+
+enum class InputFormState : ComponentState {
+    Disabled,
+    Empty,
+    Focused,
+    Active,
+    Success,
+    Error,
+}
