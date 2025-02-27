@@ -21,7 +21,7 @@ import com.inconceptlabs.designsystem.theme.attributes.Size
 fun PasswordInputForm(
     modifier: Modifier = Modifier,
     size: Size = Size.M,
-    type: InputFormType = InputFormType.FILLED,
+    type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,
     onInputChange: (String) -> Unit = {},

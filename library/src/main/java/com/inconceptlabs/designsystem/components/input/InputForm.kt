@@ -65,7 +65,7 @@ private val cursorBrush = Brush.verticalGradient(
 fun InputForm(
     modifier: Modifier = Modifier,
     size: Size = Size.M,
-    type: InputFormType = InputFormType.FILLED,
+    type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,
     onInputChange: (String) -> Unit = {},
@@ -366,7 +366,7 @@ private fun strokeColor(
     return when {
         state == InputFormState.Success -> AppTheme.colorScheme.success.main
         state == InputFormState.Error -> AppTheme.colorScheme.error.main
-        type == InputFormType.FILLED -> Color.Unspecified
+        type == InputFormType.Filled -> Color.Unspecified
         state == InputFormState.Disabled -> AppTheme.colorScheme.BG5
         state == InputFormState.Empty -> AppTheme.colorScheme.BG6
         state == InputFormState.Focused -> AppTheme.colorScheme.BG6
@@ -381,7 +381,7 @@ private fun backgroundColor(
     state: InputFormState,
 ): Color {
     return when {
-        type == InputFormType.OUTLINE -> Color.Transparent
+        type == InputFormType.Outlined -> Color.Transparent
         state == InputFormState.Focused -> AppTheme.colorScheme.BG5
         else -> AppTheme.colorScheme.BG4
     }
