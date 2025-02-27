@@ -30,15 +30,12 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.inconceptlabs.designsystem.R
 import com.inconceptlabs.designsystem.components.core.Icon
 import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.core.Text
@@ -62,22 +59,6 @@ private val cursorBrush = Brush.verticalGradient(
     0.90f to Color.Transparent,
     1.00f to Color.Transparent,
 )
-
-@Preview(
-    showBackground = true,
-    heightDp = 90
-)
-@Composable
-private fun ComponentPreview() {
-    AppTheme {
-        InputForm(
-            title = "Fill your email here",
-            hint = "Email",
-            startIcon = painterResource(id = R.drawable.ic_lock_outline),
-            endIcon = painterResource(id = R.drawable.ic_lock_outline),
-        )
-    }
-}
 
 @Composable
 fun InputForm(

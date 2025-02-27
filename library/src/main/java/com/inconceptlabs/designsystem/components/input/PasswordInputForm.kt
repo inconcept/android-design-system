@@ -13,25 +13,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import com.inconceptlabs.designsystem.components.input.tokens.LocalPasswordInputFormTokens
-import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
-
-@Preview(
-    showBackground = true,
-    heightDp = 90
-)
-@Composable
-private fun ComponentPreview() {
-    AppTheme {
-        PasswordInputForm(
-            title = "Fill your password here",
-            hint = "Password",
-        )
-    }
-}
 
 @Composable
 fun PasswordInputForm(
