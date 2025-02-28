@@ -19,12 +19,13 @@ import com.inconceptlabs.designsystem.theme.attributes.Size
 
 @Composable
 fun PasswordInputForm(
+    input: String,
+    onInputChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     size: Size = Size.M,
     type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,
-    onInputChange: (String) -> Unit = {},
     onEndIconClick: () -> Unit = {},
     hint: String? = null,
     keyboardActions: KeyboardActions = KeyboardActions(),
@@ -45,6 +46,7 @@ fun PasswordInputForm(
     }
 
     InputForm(
+        input = input,
         modifier = modifier,
         size = size,
         type = type,
