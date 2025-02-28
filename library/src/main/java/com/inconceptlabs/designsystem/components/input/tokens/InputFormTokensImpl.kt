@@ -7,6 +7,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.theme.AppTheme
+import com.inconceptlabs.designsystem.theme.LocalComponentState
 import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 
@@ -87,14 +88,14 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun hintTypography(size: Size, state: State): TextStyle {
-        return inputTypography(size, state).copy(
-            color = hintColor(state)
+    override fun hintTypography(size: Size): TextStyle {
+        return inputTypography(size).copy(
+            color = hintColor()
         )
     }
 
     @Composable
-    override fun inputTypography(size: Size, state: State): TextStyle {
+    override fun inputTypography(size: Size): TextStyle {
         val typography = when (size) {
             Size.XXS,
             Size.XS -> AppTheme.typography.P5
@@ -104,12 +105,13 @@ object InputFormTokensImpl : InputFormTokens {
         }
 
         return typography.copy(
-            color = inputColor(state)
+            color = inputColor()
         )
     }
 
     @Composable
-    override fun strokeColor(type: Type, state: State): Color {
+    override fun strokeColor(type: Type): Color {
+        val state = LocalComponentState.current
         return when {
             state == State.Success -> AppTheme.colorScheme.success.main
             state == State.Error -> AppTheme.colorScheme.error.main
@@ -123,7 +125,8 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun backgroundColor(type: Type, state: State): Color {
+    override fun backgroundColor(type: Type): Color {
+        val state = LocalComponentState.current
         return when {
             type == Type.Outlined -> Color.Transparent
             state == State.Focused -> AppTheme.colorScheme.BG5
@@ -132,7 +135,8 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun inputColor(state: State): Color {
+    override fun inputColor(): Color {
+        val state = LocalComponentState.current
         return when (state) {
             State.Disabled -> AppTheme.colorScheme.T3
             State.Empty -> AppTheme.colorScheme.T6
@@ -141,7 +145,8 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun hintColor(state: State): Color {
+    override fun hintColor(): Color {
+        val state = LocalComponentState.current
         return when (state) {
             State.Disabled -> AppTheme.colorScheme.T3
             else -> AppTheme.colorScheme.T6
@@ -149,7 +154,8 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun startIconColor(state: State, palette: PaletteColors): Color {
+    override fun startIconColor(palette: PaletteColors): Color {
+        val state = LocalComponentState.current
         return when (state) {
             State.Disabled -> AppTheme.colorScheme.T3
             State.Empty -> palette.alpha50
@@ -157,11 +163,13 @@ object InputFormTokensImpl : InputFormTokens {
             State.Active -> palette.main
             State.Success -> AppTheme.colorScheme.success.main
             State.Error -> AppTheme.colorScheme.error.main
+            else -> Color.Unspecified
         }
     }
 
     @Composable
-    override fun endIconColor(state: State): Color {
+    override fun endIconColor(): Color {
+        val state = LocalComponentState.current
         return when (state) {
             State.Disabled -> AppTheme.colorScheme.T3
             State.Empty -> AppTheme.colorScheme.T6
@@ -170,7 +178,8 @@ object InputFormTokensImpl : InputFormTokens {
     }
 
     @Composable
-    override fun additionalTextColor(state: State): Color {
+    override fun additionalTextColor(): Color {
+        val state = LocalComponentState.current
         return when (state) {
             State.Success -> AppTheme.colorScheme.success.main
             State.Error -> AppTheme.colorScheme.error.main
