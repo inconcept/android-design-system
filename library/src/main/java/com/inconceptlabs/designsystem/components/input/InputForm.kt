@@ -18,6 +18,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +40,7 @@ import com.inconceptlabs.designsystem.components.core.Text
 import com.inconceptlabs.designsystem.components.input.tokens.InputFormTokens
 import com.inconceptlabs.designsystem.components.input.tokens.LocalInputFormTokens
 import com.inconceptlabs.designsystem.theme.AppTheme
+import com.inconceptlabs.designsystem.theme.LocalComponentState
 import com.inconceptlabs.designsystem.theme.LocalContentColor
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 import com.inconceptlabs.designsystem.theme.attributes.Size
@@ -90,54 +92,56 @@ fun InputForm(
         }
     }
 
-    BasicTextField(
-        value = input,
-        singleLine = singleLine,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        cursorBrush = cursorBrush,
-        visualTransformation = visualTransformation,
-        onValueChange = {
-            if (maxCharacters == null || it.length <= maxCharacters) {
-                onInputChange(it)
-            }
-        },
-        modifier = modifier,
-        textStyle = inputTypography(size, state),
-        interactionSource = interactionSource,
-        decorationBox = { innerTextField ->
-            Column {
-                if (title != null) {
-                    InputHeader(
-                        title = title,
-                        titleIcon = titleIcon,
+    CompositionLocalProvider(
+        LocalComponentState provides state
+    ) {
+        BasicTextField(
+            value = input,
+            singleLine = singleLine,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            cursorBrush = cursorBrush,
+            visualTransformation = visualTransformation,
+            onValueChange = {
+                if (maxCharacters == null || it.length <= maxCharacters) {
+                    onInputChange(it)
+                }
+            },
+            modifier = modifier,
+            textStyle = inputTypography(size),
+            interactionSource = interactionSource,
+            decorationBox = { innerTextField ->
+                Column {
+                    if (title != null) {
+                        InputHeader(
+                            title = title,
+                            titleIcon = titleIcon,
+                            size = size,
+                        )
+                    }
+
+                    InputRow(
                         size = size,
+                        startIcon = startIcon,
+                        endIcon = endIcon,
+                        onEndIconClick = onEndIconClick,
+                        innerTextField = innerTextField,
+                        type = type,
+                        keyColor = keyColor,
+                        hint = hint,
+                        isHintVisible = input.isEmpty(),
+                    )
+
+                    InputFooter(
+                        additionalInfo = errorMessageRes ?: additionalInfo,
+                        isCharacterCounterVisible = isCharacterCounterVisible,
+                        maxCharacters = maxCharacters,
+                        input = input,
                     )
                 }
-
-                InputRow(
-                    size = size,
-                    startIcon = startIcon,
-                    endIcon = endIcon,
-                    onEndIconClick = onEndIconClick,
-                    innerTextField = innerTextField,
-                    type = type,
-                    state = state,
-                    keyColor = keyColor,
-                    hint = hint,
-                    isHintVisible = input.isEmpty(),
-                )
-
-                InputFooter(
-                    state = state,
-                    additionalInfo = errorMessageRes ?: additionalInfo,
-                    isCharacterCounterVisible = isCharacterCounterVisible,
-                    maxCharacters = maxCharacters,
-                    input = input,
-                )
             }
-        }
-    )
+        )
+    }
 }
 
 @Composable
@@ -175,7 +179,6 @@ private fun InputFormTokens.InputRow(
     endIcon: Painter?,
     onEndIconClick: () -> Unit,
     type: InputFormType,
-    state: InputFormState,
     keyColor: KeyColor,
     innerTextField: @Composable () -> Unit,
 ) {
@@ -187,12 +190,12 @@ private fun InputFormTokens.InputRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .background(
-                color = backgroundColor(type, state),
+                color = backgroundColor(type),
                 shape = shape
             )
             .border(
                 width = LocalCoreTokens.current.strokeWidthBySize(size),
-                color = strokeColor(type, state),
+                color = strokeColor(type),
                 shape = shape
             )
             .padding(horizontal = horizontalPadding)
@@ -201,7 +204,7 @@ private fun InputFormTokens.InputRow(
         if (startIcon != null) {
             InputIcon(
                 painter = startIcon,
-                tint = startIconColor(state = state, palette = palette),
+                tint = startIconColor(palette = palette),
                 size = formIconSize(size),
                 modifier = Modifier
                     .padding(end = startIconPadding)
@@ -214,14 +217,14 @@ private fun InputFormTokens.InputRow(
             innerTextField()
 
             if (isHintVisible && !hint.isNullOrBlank()) {
-                InputHint(hint, size, state)
+                InputHint(hint, size)
             }
         }
 
         if (endIcon != null) {
             InputIcon(
                 painter = endIcon,
-                tint = endIconColor(state = state),
+                tint = endIconColor(),
                 size = formIconSize(size),
                 onClick = onEndIconClick,
                 modifier = Modifier
@@ -233,7 +236,6 @@ private fun InputFormTokens.InputRow(
 
 @Composable
 private fun InputFormTokens.InputFooter(
-    state: InputFormState,
     @StringRes additionalInfo: Int? = null,
     isCharacterCounterVisible: Boolean = false,
     maxCharacters: Int? = null,
@@ -249,7 +251,7 @@ private fun InputFormTokens.InputFooter(
             Text(
                 text = stringResource(id = additionalInfo),
                 style = AppTheme.typography.P6,
-                color = additionalTextColor(state),
+                color = additionalTextColor(),
                 modifier = Modifier.weight(1f)
             )
         }
@@ -285,10 +287,9 @@ private fun InputIcon(
 private fun InputFormTokens.InputHint(
     hint: String,
     size: Size,
-    state: InputFormState,
 ) {
     Text(
         text = hint,
-        style = hintTypography(size, state),
+        style = hintTypography(size),
     )
 }

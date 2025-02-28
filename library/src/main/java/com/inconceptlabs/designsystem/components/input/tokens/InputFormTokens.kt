@@ -42,31 +42,31 @@ interface InputFormTokens {
     fun titleTypography(size: Size): TextStyle
 
     @Composable
-    fun hintTypography(size: Size, state: State): TextStyle
+    fun hintTypography(size: Size): TextStyle
 
     @Composable
-    fun inputTypography(size: Size, state: State): TextStyle
+    fun inputTypography(size: Size): TextStyle
 
     @Composable
-    fun strokeColor(type: Type, state: State): Color
+    fun strokeColor(type: Type): Color
 
     @Composable
-    fun backgroundColor(type: Type, state: State): Color
+    fun backgroundColor(type: Type): Color
 
     @Composable
-    fun inputColor(state: State): Color
+    fun inputColor(): Color
 
     @Composable
-    fun hintColor(state: State): Color
+    fun hintColor(): Color
 
     @Composable
-    fun startIconColor(state: State, palette: PaletteColors): Color
+    fun startIconColor(palette: PaletteColors): Color
 
     @Composable
-    fun endIconColor(state: State): Color
+    fun endIconColor(): Color
 
     @Composable
-    fun additionalTextColor(state: State): Color
+    fun additionalTextColor(): Color
 
     companion object {
 
