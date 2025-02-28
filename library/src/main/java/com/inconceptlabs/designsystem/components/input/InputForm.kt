@@ -25,8 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusState
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.stringResource
@@ -48,13 +46,13 @@ import com.inconceptlabs.designsystem.theme.colors.paletteColors
 
 @Composable
 fun InputForm(
+    input: String,
+    onInputChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     size: Size = Size.M,
     type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,
-    onInputChange: (String) -> Unit = {},
-    onFocusChange: (FocusState) -> Unit = {},
     onEndIconClick: () -> Unit = {},
     hint: String? = null,
     keyboardActions: KeyboardActions = KeyboardActions(),
@@ -74,8 +72,6 @@ fun InputForm(
     require(size != Size.XXS) { "`Size.XXS` not supported for `InputForm`" }
 
     val isFocused by interactionSource.collectIsFocusedAsState()
-
-    var input by remember { mutableStateOf("") }
 
     var state by remember {
         val value = when {
@@ -102,13 +98,11 @@ fun InputForm(
         cursorBrush = cursorBrush,
         visualTransformation = visualTransformation,
         onValueChange = {
-            if (maxCharacters != null && it.length > maxCharacters) return@BasicTextField
-
-            input = it
-            onInputChange(it)
+            if (maxCharacters == null || it.length <= maxCharacters) {
+                onInputChange(it)
+            }
         },
-        modifier = modifier
-            .onFocusChanged(onFocusChange),
+        modifier = modifier,
         textStyle = inputTypography(size, state),
         interactionSource = interactionSource,
         decorationBox = { innerTextField ->
@@ -139,7 +133,7 @@ fun InputForm(
                     additionalInfo = errorMessageRes ?: additionalInfo,
                     isCharacterCounterVisible = isCharacterCounterVisible,
                     maxCharacters = maxCharacters,
-                    input = input
+                    input = input,
                 )
             }
         }
