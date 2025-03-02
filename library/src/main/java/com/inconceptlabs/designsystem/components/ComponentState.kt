@@ -15,3 +15,9 @@ sealed interface TabItemState : ComponentState {
     data object Pressed : TabItemState
     data object Active : TabItemState
 }
+
+sealed interface ToggleState : ComponentState {
+    data object Default : ToggleState
+    data object Pressed : ToggleState
+    data object Disabled : ToggleState
+}
