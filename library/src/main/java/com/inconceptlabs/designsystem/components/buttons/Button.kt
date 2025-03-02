@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -105,14 +105,14 @@ fun Button(
                     interactionSource = interactionSource,
                     indication = LocalIndication.current,
                     onClick = onClick
-                )
-                .defaultMinSize(
-                    minWidth = minWidth(size).takeIf { hasMinWidth } ?: Dp.Unspecified,
-                    minHeight = height(size)
                 ),
         ) {
             Row(
                 modifier = Modifier
+                    .requiredSize(
+                        width = minWidth(size).takeIf { hasMinWidth } ?: Dp.Unspecified,
+                        height = height(size)
+                    )
                     .padding(paddingValues = contentPadding(size)),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
