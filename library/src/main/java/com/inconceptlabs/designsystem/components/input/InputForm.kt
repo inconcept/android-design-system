@@ -51,7 +51,7 @@ fun InputForm(
     input: String,
     onInputChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    size: Size = Size.M,
+    size: InputFormSize = InputFormSize.M,
     type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,
@@ -71,7 +71,6 @@ fun InputForm(
     endIcon: Painter? = null,
 ) = with(LocalInputFormTokens.current) {
     require(title == null || title.isNotBlank()) { "Parameter `title` must not be blank!" }
-    require(size != Size.XXS) { "`Size.XXS` not supported for `InputForm`" }
 
     val isFocused by interactionSource.collectIsFocusedAsState()
 
@@ -148,7 +147,7 @@ fun InputForm(
 private fun InputFormTokens.InputHeader(
     title: String,
     titleIcon: Painter? = null,
-    size: Size,
+    size: InputFormSize,
 ) {
     Row(
         modifier = Modifier
@@ -174,7 +173,7 @@ private fun InputFormTokens.InputHeader(
 private fun InputFormTokens.InputRow(
     isHintVisible: Boolean,
     hint: String? = null,
-    size: Size,
+    size: InputFormSize,
     startIcon: Painter?,
     endIcon: Painter?,
     onEndIconClick: () -> Unit,
@@ -194,7 +193,9 @@ private fun InputFormTokens.InputRow(
                 shape = shape
             )
             .border(
-                width = LocalCoreTokens.current.strokeWidthBySize(size),
+                width = LocalCoreTokens.current.strokeWidthBySize(
+                    size = Size.valueOf(size.name)
+                ),
                 color = strokeColor(type),
                 shape = shape
             )
@@ -286,7 +287,7 @@ private fun InputIcon(
 @Composable
 private fun InputFormTokens.InputHint(
     hint: String,
-    size: Size,
+    size: InputFormSize,
 ) {
     Text(
         text = hint,

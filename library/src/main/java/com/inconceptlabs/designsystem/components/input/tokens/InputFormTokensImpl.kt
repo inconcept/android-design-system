@@ -6,9 +6,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.inconceptlabs.designsystem.components.input.InputFormSize
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.LocalComponentState
-import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 
 object InputFormTokensImpl : InputFormTokens {
@@ -36,72 +36,66 @@ object InputFormTokensImpl : InputFormTokens {
             1.00f to Color.Transparent,
         )
 
-    override fun height(size: Size): Dp {
+    override fun height(size: InputFormSize): Dp {
         return when (size) {
-            Size.XXS,
-            Size.XS -> 36.dp
-            Size.S -> 40.dp
-            Size.M -> 48.dp
-            Size.L -> 56.dp
+            InputFormSize.XS -> 36.dp
+            InputFormSize.S -> 40.dp
+            InputFormSize.M -> 48.dp
+            InputFormSize.L -> 56.dp
         }
     }
 
-    override fun cornerRadius(size: Size): Dp {
+    override fun cornerRadius(size: InputFormSize): Dp {
         return when (size) {
-            Size.XXS,
-            Size.XS -> 12.dp
-            Size.S -> 14.dp
-            Size.M -> 16.dp
-            Size.L -> 18.dp
+            InputFormSize.XS -> 12.dp
+            InputFormSize.S -> 14.dp
+            InputFormSize.M -> 16.dp
+            InputFormSize.L -> 18.dp
         }
     }
 
-    override fun titleIconSize(size: Size): Dp {
+    override fun titleIconSize(size: InputFormSize): Dp {
         return when (size) {
-            Size.XXS,
-            Size.XS,
-            Size.S -> 16.dp
-            Size.M,
-            Size.L -> 18.dp
+            InputFormSize.XS,
+            InputFormSize.S -> 16.dp
+            InputFormSize.M,
+            InputFormSize.L -> 18.dp
         }
     }
 
-    override fun formIconSize(size: Size): Dp {
+    override fun formIconSize(size: InputFormSize): Dp {
         return when (size) {
-            Size.XXS,
-            Size.XS -> 16.dp
-            Size.S -> 18.dp
-            Size.M -> 20.dp
-            Size.L -> 22.dp
+            InputFormSize.XS -> 16.dp
+            InputFormSize.S -> 18.dp
+            InputFormSize.M -> 20.dp
+            InputFormSize.L -> 22.dp
         }
     }
 
     @Composable
-    override fun titleTypography(size: Size): TextStyle {
+    override fun titleTypography(size: InputFormSize): TextStyle {
         return when (size) {
-            Size.XXS,
-            Size.XS,
-            Size.S -> AppTheme.typography.P5
-            Size.M,
-            Size.L -> AppTheme.typography.P4
+            InputFormSize.XS,
+            InputFormSize.S -> AppTheme.typography.P5
+            InputFormSize.M,
+            InputFormSize.L -> AppTheme.typography.P4
         }
     }
 
     @Composable
-    override fun hintTypography(size: Size): TextStyle {
+    override fun hintTypography(size: InputFormSize): TextStyle {
         return inputTypography(size).copy(
             color = hintColor()
         )
     }
 
     @Composable
-    override fun inputTypography(size: Size): TextStyle {
+    override fun inputTypography(size: InputFormSize): TextStyle {
         val typography = when (size) {
-            Size.XXS,
-            Size.XS -> AppTheme.typography.P5
-            Size.S -> AppTheme.typography.P4
-            Size.M -> AppTheme.typography.P3
-            Size.L -> AppTheme.typography.P3
+            InputFormSize.XS -> AppTheme.typography.P5
+            InputFormSize.S -> AppTheme.typography.P4
+            InputFormSize.M -> AppTheme.typography.P3
+            InputFormSize.L -> AppTheme.typography.P3
         }
 
         return typography.copy(

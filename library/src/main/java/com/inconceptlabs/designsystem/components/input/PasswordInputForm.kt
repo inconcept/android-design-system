@@ -15,14 +15,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.inconceptlabs.designsystem.components.input.tokens.LocalPasswordInputFormTokens
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
-import com.inconceptlabs.designsystem.theme.attributes.Size
 
 @Composable
 fun PasswordInputForm(
     input: String,
     onInputChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    size: Size = Size.M,
+    size: InputFormSize = InputFormSize.M,
     type: InputFormType = InputFormType.Filled,
     keyColor: KeyColor = KeyColor.PRIMARY,
     maxCharacters: Int? = null,

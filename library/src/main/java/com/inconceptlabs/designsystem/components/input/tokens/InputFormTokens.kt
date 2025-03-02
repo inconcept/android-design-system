@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.inconceptlabs.designsystem.components.InputFormState
+import com.inconceptlabs.designsystem.components.input.InputFormSize
 import com.inconceptlabs.designsystem.components.input.InputFormType
 import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
@@ -30,22 +31,22 @@ interface InputFormTokens {
      */
     val cursorBrush: Brush
 
-    fun height(size: Size): Dp
+    fun height(size: InputFormSize): Dp
 
-    fun cornerRadius(size: Size): Dp
+    fun cornerRadius(size: InputFormSize): Dp
 
-    fun titleIconSize(size: Size): Dp
+    fun titleIconSize(size: InputFormSize): Dp
 
-    fun formIconSize(size: Size): Dp
-
-    @Composable
-    fun titleTypography(size: Size): TextStyle
+    fun formIconSize(size: InputFormSize): Dp
 
     @Composable
-    fun hintTypography(size: Size): TextStyle
+    fun titleTypography(size: InputFormSize): TextStyle
 
     @Composable
-    fun inputTypography(size: Size): TextStyle
+    fun hintTypography(size: InputFormSize): TextStyle
+
+    @Composable
+    fun inputTypography(size: InputFormSize): TextStyle
 
     @Composable
     fun strokeColor(type: Type): Color
