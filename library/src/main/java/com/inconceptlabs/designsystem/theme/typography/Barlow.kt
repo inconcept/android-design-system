@@ -64,8 +64,8 @@ internal object Barlow : Typography {
     override val B1 = default.copy(fontSize = 20.sp, lineHeight = 30.sp, fontWeight = FontWeight.Bold)
     override val B2 = default.copy(fontSize = 18.sp, lineHeight = 28.sp, fontWeight = FontWeight.Bold)
     override val B3 = B2.copy(fontWeight = FontWeight.SemiBold)
-    override val B4 = default.copy(fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold)
-    override val B5 = default.copy(fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold)
+    override val B4 = default.copy(fontSize = 16.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold)
+    override val B5 = default.copy(fontSize = 14.sp, lineHeight = 18.sp, fontWeight = FontWeight.SemiBold)
     override val B6 = default.copy(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.SemiBold)
 
     override val L1 = default.copy(fontSize = 20.sp, lineHeight = 30.sp, fontWeight = FontWeight.Bold)
