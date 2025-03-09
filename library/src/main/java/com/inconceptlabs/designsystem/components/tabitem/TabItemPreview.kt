@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -15,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.R
 import com.inconceptlabs.designsystem.components.TabItemState
 import com.inconceptlabs.designsystem.components.core.Divider
-import com.inconceptlabs.designsystem.components.core.Text
 import com.inconceptlabs.designsystem.theme.AppTheme
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 
@@ -64,6 +62,62 @@ private fun IconTabItemPreview() {
                 )
                 IconTabItem(
                     icon = painterResource(R.drawable.ic_lock_outline),
+                    keyColor = KeyColor.PREMIUM,
+                    initialState = TabItemState.Active,
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TextTabItemPreview() {
+    AppTheme {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .padding(16.dp)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                TextTabItem(
+                    text = "Text",
+                    icon = painterResource(R.drawable.ic_lock_outline),
+                    size = TabItemSize.XS,
+                )
+                TextTabItem(
+                    text = "Text",
+                    icon = painterResource(R.drawable.ic_lock_outline),
+                    size = TabItemSize.XS,
+                    initialState = TabItemState.Pressed,
+                )
+                TextTabItem(
+                    text = "Text",
+                    icon = painterResource(R.drawable.ic_lock_outline),
+                    size = TabItemSize.XS,
+                    initialState = TabItemState.Active,
+                )
+            }
+
+            Divider()
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                TextTabItem(
+                    text = "Text",
+                    keyColor = KeyColor.PREMIUM,
+                )
+                TextTabItem(
+                    text = "Text",
+                    keyColor = KeyColor.PREMIUM,
+                    initialState = TabItemState.Pressed,
+                )
+                TextTabItem(
+                    text = "Text",
                     keyColor = KeyColor.PREMIUM,
                     initialState = TabItemState.Active,
                 )
