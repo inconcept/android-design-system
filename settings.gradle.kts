@@ -1,3 +1,5 @@
+rootProject.name = "android-design-system"
+
 pluginManagement {
     repositories {
         google()
@@ -13,7 +15,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "android-design-system"
 
 include(":library")

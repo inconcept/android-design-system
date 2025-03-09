@@ -1,8 +1,10 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
 
-    id("maven-publish")
+    kotlin("android")
+    kotlin("plugin.compose")
+
+    `maven-publish`
 }
 
 android {
@@ -39,10 +41,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.6"
     }
 
     packaging {
