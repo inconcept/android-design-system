@@ -16,6 +16,7 @@ import com.inconceptlabs.designsystem.components.core.LocalCoreTokens
 import com.inconceptlabs.designsystem.components.emptyitem.LocalEmptyItemTokens
 import com.inconceptlabs.designsystem.components.input.tokens.LocalInputFormTokens
 import com.inconceptlabs.designsystem.components.input.tokens.LocalPasswordInputFormTokens
+import com.inconceptlabs.designsystem.components.notification.tokens.LocalNotificationTokens
 import com.inconceptlabs.designsystem.components.tabitem.LocalTabItemTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
 import com.inconceptlabs.designsystem.theme.indication.NoIndication
@@ -84,6 +85,7 @@ fun AppTheme(
         LocalInputFormTokens provides tokens.inputForm,
         LocalPasswordInputFormTokens provides tokens.passwordInputForm,
         LocalEmptyItemTokens provides tokens.emptyItem,
+        LocalNotificationTokens provides tokens.notification,
     ) {
         content()
     }

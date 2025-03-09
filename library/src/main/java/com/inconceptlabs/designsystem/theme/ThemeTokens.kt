@@ -9,6 +9,7 @@ import com.inconceptlabs.designsystem.components.emptyitem.EmptyItem
 import com.inconceptlabs.designsystem.components.emptyitem.EmptyItemTokens
 import com.inconceptlabs.designsystem.components.input.tokens.InputFormTokens
 import com.inconceptlabs.designsystem.components.input.tokens.PasswordInputFormTokens
+import com.inconceptlabs.designsystem.components.notification.tokens.NotificationTokens
 import com.inconceptlabs.designsystem.theme.attributes.KeyColor
 
 /**
@@ -69,6 +70,7 @@ data class ThemeTokens(
     val inputForm: InputFormTokens = InputFormTokens.Default,
     val passwordInputForm: PasswordInputFormTokens = PasswordInputFormTokens.Default,
     val emptyItem: EmptyItemTokens = EmptyItemTokens.Default,
+    val notification: NotificationTokens = NotificationTokens.Default,
 ) {
 
     companion object {
