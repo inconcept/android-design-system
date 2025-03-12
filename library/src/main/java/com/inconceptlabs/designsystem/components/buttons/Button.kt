@@ -43,10 +43,10 @@ import com.inconceptlabs.designsystem.theme.colors.paletteColors
  * @param modifier Modifier for positioning and sizing the button.
  * @param size Size of the button (default: [Size.M]).
  * @param isEnabled Flag indicating whether the button is enabled for interaction.
- * @param keyColor Key color of the button (default: [KeyColor.PRIMARY]).
- * @param type Type of the button (default: [ButtonType.PRIMARY]).
+ * @param keyColor Key color of the button (default: [KeyColor.Primary]).
+ * @param type Type of the button (default: [ButtonType.Primary]).
  * @param hasMinWidth Flag indicating whether the button has minimum width (default: true).
- * @param cornerType Type of corner shape for the button (default: [CornerType.ROUNDED]).
+ * @param cornerType Type of corner shape for the button (default: [CornerType.Rounded]).
  * @param interactionSource the [MutableInteractionSource] representing the stream of [Interaction]s
  * for this button. You can create and pass in your own `remember`ed instance to observe
  * [Interaction]s and customize the appearance / behavior of this button in different states.
@@ -58,18 +58,18 @@ fun Button(
     modifier: Modifier = Modifier,
     size: Size = Size.M,
     isEnabled: Boolean = true,
-    keyColor: KeyColor = KeyColor.PRIMARY,
-    type: ButtonType = ButtonType.PRIMARY,
+    keyColor: KeyColor = KeyColor.Primary,
+    type: ButtonType = ButtonType.Primary,
     hasMinWidth: Boolean = true,
-    cornerType: CornerType = CornerType.ROUNDED,
+    cornerType: CornerType = CornerType.Rounded,
     interactionSource: MutableInteractionSource = remember(::MutableInteractionSource),
     content: @Composable RowScope.() -> Unit,
 ) = with(LocalButtonTokens.current) {
     val isPressed by interactionSource.collectIsPressedAsState()
 
     val shape = when (cornerType) {
-        CornerType.CIRCULAR -> CircleShape
-        CornerType.ROUNDED -> RoundedCornerShape(cornerRadius(size))
+        CornerType.Circular -> CircleShape
+        CornerType.Rounded -> RoundedCornerShape(cornerRadius(size))
     }
 
     val palette = keyColor.paletteColors()

@@ -87,24 +87,24 @@ object ButtonTokensImpl : ButtonTokens {
         return when (LocalComponentState.current) {
             ButtonState.Default -> {
                 when (type) {
-                    ButtonType.PRIMARY -> palette.main
-                    ButtonType.SECONDARY -> AppTheme.colorScheme.BG4
-                    ButtonType.TEXT -> Color.Transparent
-                    ButtonType.OUTLINE -> Color.Transparent
+                    ButtonType.Primary -> palette.main
+                    ButtonType.Secondary -> AppTheme.colorScheme.BG4
+                    ButtonType.Text -> Color.Transparent
+                    ButtonType.Outline -> Color.Transparent
                 }
             }
             ButtonState.Pressed -> {
                 when (type) {
-                    ButtonType.PRIMARY -> palette.dark5
+                    ButtonType.Primary -> palette.dark5
                     else -> palette.alpha10
                 }
             }
             ButtonState.Disabled -> {
                 when (type) {
-                    ButtonType.PRIMARY,
-                    ButtonType.SECONDARY -> AppTheme.colorScheme.BG2
-                    ButtonType.TEXT,
-                    ButtonType.OUTLINE -> Color.Transparent
+                    ButtonType.Primary,
+                    ButtonType.Secondary -> AppTheme.colorScheme.BG2
+                    ButtonType.Text,
+                    ButtonType.Outline -> Color.Transparent
                 }
             }
             else -> Color.Unspecified
@@ -116,24 +116,24 @@ object ButtonTokensImpl : ButtonTokens {
         return when (LocalComponentState.current) {
             ButtonState.Default -> {
                 when (type) {
-                    ButtonType.PRIMARY -> palette.main
-                    ButtonType.SECONDARY -> AppTheme.colorScheme.BG4
-                    ButtonType.TEXT -> Color.Transparent
-                    ButtonType.OUTLINE -> palette.alpha50
+                    ButtonType.Primary -> palette.main
+                    ButtonType.Secondary -> AppTheme.colorScheme.BG4
+                    ButtonType.Text -> Color.Transparent
+                    ButtonType.Outline -> palette.alpha50
                 }
             }
             ButtonState.Pressed -> {
                 when (type) {
-                    ButtonType.PRIMARY -> palette.dark5
+                    ButtonType.Primary -> palette.dark5
                     else -> palette.alpha10
                 }
             }
             ButtonState.Disabled -> {
                 when (type) {
-                    ButtonType.PRIMARY,
-                    ButtonType.SECONDARY -> AppTheme.colorScheme.BG2
-                    ButtonType.TEXT -> Color.Transparent
-                    ButtonType.OUTLINE -> AppTheme.colorScheme.BG4
+                    ButtonType.Primary,
+                    ButtonType.Secondary -> AppTheme.colorScheme.BG2
+                    ButtonType.Text -> Color.Transparent
+                    ButtonType.Outline -> AppTheme.colorScheme.BG4
                 }
             }
             else -> Color.Unspecified
@@ -145,15 +145,15 @@ object ButtonTokensImpl : ButtonTokens {
         return when (LocalComponentState.current) {
             ButtonState.Default -> {
                 when (type) {
-                    ButtonType.PRIMARY -> Color.White
-                    ButtonType.SECONDARY -> AppTheme.colorScheme.T8
-                    ButtonType.TEXT -> AppTheme.colorScheme.T8
-                    ButtonType.OUTLINE -> AppTheme.colorScheme.T8
+                    ButtonType.Primary -> Color.White
+                    ButtonType.Secondary -> AppTheme.colorScheme.T8
+                    ButtonType.Text -> AppTheme.colorScheme.T8
+                    ButtonType.Outline -> AppTheme.colorScheme.T8
                 }
             }
             ButtonState.Pressed -> {
                 when (type) {
-                    ButtonType.PRIMARY -> AppTheme.colorScheme.T1
+                    ButtonType.Primary -> AppTheme.colorScheme.T1
                     else -> palette.dark5
                 }
             }

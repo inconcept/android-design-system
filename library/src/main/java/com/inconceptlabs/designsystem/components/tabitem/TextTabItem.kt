@@ -25,7 +25,7 @@ fun TextTabItem(
     modifier: Modifier = Modifier,
     icon: Painter? = null,
     size: TabItemSize = TabItemSize.S,
-    keyColor: KeyColor = KeyColor.PRIMARY,
+    keyColor: KeyColor = KeyColor.Primary,
     initialState: TabItemState = TabItemState.Default,
     onClick: () -> Unit = { },
 ) {
@@ -52,7 +52,7 @@ fun TextTabItem(
                 TabItemSize.XS -> Size.XS
                 TabItemSize.S -> Size.S
             },
-            type = ButtonType.OUTLINE,
+            type = ButtonType.Outline,
             keyColor = keyColor,
             onClick = onClick,
         )

@@ -23,7 +23,7 @@ fun Notification(
     title: String,
     description: String,
     modifier: Modifier = Modifier,
-    keyColor: KeyColor = KeyColor.SECONDARY,
+    keyColor: KeyColor = KeyColor.Primary,
     startIcon: Painter? = null,
     endIcon: Painter? = null,
     buttonText: String? = null,

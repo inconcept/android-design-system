@@ -27,7 +27,7 @@ private fun NotificationPreview() {
                 startIcon = warningIcon,
                 title = "Account Blocked",
                 description = "Account blocked due to suspicious activity",
-                keyColor = KeyColor.ERROR,
+                keyColor = KeyColor.Error,
             )
             Notification(
                 startIcon = warningIcon,
@@ -36,7 +36,7 @@ private fun NotificationPreview() {
                 description = "If you have not received the email",
                 buttonText = "Resend",
                 isButtonEnabled = false,
-                keyColor = KeyColor.WARNING,
+                keyColor = KeyColor.Warning,
             )
             Notification(
                 startIcon = warningIcon,
@@ -46,7 +46,7 @@ private fun NotificationPreview() {
                     Get 50% off on your first purchase.
                 """.trimIndent(),
                 buttonText = "Upgrade",
-                keyColor = KeyColor.PREMIUM,
+                keyColor = KeyColor.Premium,
             )
 
             val customTokens = object : NotificationTokens by NotificationTokens.Default {
@@ -78,7 +78,7 @@ private fun NotificationPreview() {
                         Sorry for any inconvenience caused.
                         Third line won't be visible.
                     """.trimIndent(),
-                    keyColor = KeyColor.INFO,
+                    keyColor = KeyColor.Info,
                 )
             }
         }

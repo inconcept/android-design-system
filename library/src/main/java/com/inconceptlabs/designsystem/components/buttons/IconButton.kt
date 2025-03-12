@@ -24,7 +24,7 @@ private fun ComponentPreview() {
     AppTheme {
         IconButton(
             icon = painterResource(id = R.drawable.ic_lock_outline),
-            type = ButtonType.PRIMARY,
+            type = ButtonType.Primary,
             onClick = {}
         )
     }
@@ -37,9 +37,9 @@ fun IconButton(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     size: Size = Size.M,
-    type: ButtonType = ButtonType.TEXT,
-    keyColor: KeyColor = KeyColor.PRIMARY,
-    cornerType: CornerType = CornerType.ROUNDED,
+    type: ButtonType = ButtonType.Text,
+    keyColor: KeyColor = KeyColor.Primary,
+    cornerType: CornerType = CornerType.Rounded,
 ) {
     CompositionLocalProvider(
         LocalButtonTokens provides LocalIconButtonTokens.current

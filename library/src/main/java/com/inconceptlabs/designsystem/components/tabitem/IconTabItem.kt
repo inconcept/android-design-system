@@ -25,7 +25,7 @@ fun IconTabItem(
     icon: Painter,
     modifier: Modifier = Modifier,
     size: TabItemSize = TabItemSize.S,
-    keyColor: KeyColor = KeyColor.PRIMARY,
+    keyColor: KeyColor = KeyColor.Primary,
     initialState: TabItemState = TabItemState.Default,
     onClick: () -> Unit = { },
 ) {
@@ -51,9 +51,9 @@ fun IconTabItem(
                 TabItemSize.XS -> Size.XS
                 TabItemSize.S -> Size.S
             },
-            type = ButtonType.OUTLINE,
+            type = ButtonType.Outline,
             keyColor = keyColor,
-            cornerType = CornerType.ROUNDED,
+            cornerType = CornerType.Rounded,
             onClick = onClick,
         )
     }

@@ -49,7 +49,7 @@ fun EmptyItem(
     title: String,
     description: String,
     modifier: Modifier = Modifier,
-    keyColor: KeyColor = KeyColor.PRIMARY,
+    keyColor: KeyColor = KeyColor.Primary,
     buttonText: String? = null,
     onButtonClick: () -> Unit = { },
 ) = with(LocalEmptyItemTokens.current) {

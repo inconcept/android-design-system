@@ -53,16 +53,16 @@ private fun IconTabItemPreview() {
             ) {
                 IconTabItem(
                     icon = painterResource(R.drawable.ic_lock_outline),
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                 )
                 IconTabItem(
                     icon = painterResource(R.drawable.ic_lock_outline),
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                     initialState = TabItemState.Pressed,
                 )
                 IconTabItem(
                     icon = painterResource(R.drawable.ic_lock_outline),
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                     initialState = TabItemState.Active,
                 )
             }
@@ -109,16 +109,16 @@ private fun TextTabItemPreview() {
             ) {
                 TextTabItem(
                     text = "Text",
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                 )
                 TextTabItem(
                     text = "Text",
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                     initialState = TabItemState.Pressed,
                 )
                 TextTabItem(
                     text = "Text",
-                    keyColor = KeyColor.PREMIUM,
+                    keyColor = KeyColor.Premium,
                     initialState = TabItemState.Active,
                 )
             }

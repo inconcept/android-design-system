@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.Dp
 import com.inconceptlabs.designsystem.components.InputFormState
 import com.inconceptlabs.designsystem.components.input.InputFormSize
 import com.inconceptlabs.designsystem.components.input.InputFormType
-import com.inconceptlabs.designsystem.theme.attributes.Size
 import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 
 typealias State = InputFormState

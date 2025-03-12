@@ -17,14 +17,14 @@ data class PaletteColors(
 @Composable
 fun KeyColor.paletteColors(): PaletteColors {
     return when (this) {
-        KeyColor.PRIMARY -> AppTheme.colorScheme.primary
-        KeyColor.SECONDARY -> AppTheme.colorScheme.secondary
-        KeyColor.TERTIARY -> AppTheme.colorScheme.tertiary
-        KeyColor.SUCCESS -> AppTheme.colorScheme.success
-        KeyColor.ERROR -> AppTheme.colorScheme.error
-        KeyColor.WARNING -> AppTheme.colorScheme.warning
-        KeyColor.INFO -> AppTheme.colorScheme.info
-        KeyColor.PREMIUM -> AppTheme.colorScheme.premium
-        KeyColor.COLOR_NEW -> AppTheme.colorScheme.new
+        KeyColor.Primary -> AppTheme.colorScheme.primary
+        KeyColor.Secondary -> AppTheme.colorScheme.secondary
+        KeyColor.Tertiary -> AppTheme.colorScheme.tertiary
+        KeyColor.Success -> AppTheme.colorScheme.success
+        KeyColor.Error -> AppTheme.colorScheme.error
+        KeyColor.Warning -> AppTheme.colorScheme.warning
+        KeyColor.Info -> AppTheme.colorScheme.info
+        KeyColor.Premium -> AppTheme.colorScheme.premium
+        KeyColor.ColorNew -> AppTheme.colorScheme.new
     }
 }

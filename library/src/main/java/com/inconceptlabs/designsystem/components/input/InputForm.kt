@@ -53,7 +53,7 @@ fun InputForm(
     modifier: Modifier = Modifier,
     size: InputFormSize = InputFormSize.M,
     type: InputFormType = InputFormType.Filled,
-    keyColor: KeyColor = KeyColor.PRIMARY,
+    keyColor: KeyColor = KeyColor.Primary,
     maxCharacters: Int? = null,
     onEndIconClick: () -> Unit = {},
     hint: String? = null,

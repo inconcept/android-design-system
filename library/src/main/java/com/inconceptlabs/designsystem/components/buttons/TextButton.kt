@@ -41,8 +41,8 @@ private fun ComponentPreview() {
  * @param modifier Modifier for composable positioning and sizing only.
  * @param isEnabled Flag indicating whether the button is enabled for interaction.
  * @param size Size of the button (default: [Size.M]).
- * @param type Type of the button (default: [ButtonType.PRIMARY]).
- * @param keyColor Key color of the button (default: [KeyColor.PRIMARY]).
+ * @param type Type of the button (default: [ButtonType.Primary]).
+ * @param keyColor Key color of the button (default: [KeyColor.Primary]).
  * @param hasMinWidth Flag indicating whether the button has minimum width (default: true).
  * @param startIcon Optional icon at the start position of the button.
  * @param endIcon Optional icon at the end position of the button.
@@ -54,8 +54,8 @@ fun TextButton(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     size: Size = Size.M,
-    type: ButtonType = ButtonType.PRIMARY,
-    keyColor: KeyColor = KeyColor.PRIMARY,
+    type: ButtonType = ButtonType.Primary,
+    keyColor: KeyColor = KeyColor.Primary,
     hasMinWidth: Boolean = true,
     startIcon: Painter? = null,
     endIcon: Painter? = null,

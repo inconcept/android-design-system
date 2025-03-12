@@ -12,7 +12,7 @@ data class EmptyItemData(
     val icon: @Composable () -> Painter,
     val title: @Composable () -> String,
     val description: @Composable () -> String,
-    val keyColor: KeyColor = KeyColor.PRIMARY,
+    val keyColor: KeyColor = KeyColor.Primary,
     val buttonText: @Composable (() -> String)? = null,
     val onButtonClick: () -> Unit = { },
 ) {
@@ -21,7 +21,7 @@ data class EmptyItemData(
         @DrawableRes iconId: Int,
         @StringRes titleId: Int,
         @StringRes descriptionId: Int,
-        keyColor: KeyColor = KeyColor.PRIMARY,
+        keyColor: KeyColor = KeyColor.Primary,
         @StringRes buttonTextId: Int? = null,
         onButtonClick: () -> Unit = { },
     ) : this(

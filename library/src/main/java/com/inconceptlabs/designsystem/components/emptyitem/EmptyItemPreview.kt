@@ -48,7 +48,7 @@ private fun ComponentPreview() {
                 title = "EmptyItem with alternate keyColor",
                 description = "A little longer description taking one more line for demonstration purposes",
                 buttonText = "Try Again",
-                keyColor = KeyColor.SECONDARY,
+                keyColor = KeyColor.Secondary,
             )
 
             CompositionLocalProvider(
