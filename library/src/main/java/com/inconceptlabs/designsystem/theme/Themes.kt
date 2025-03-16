@@ -23,7 +23,7 @@ import com.inconceptlabs.designsystem.theme.indication.NoIndication
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
 
-private val LocalColorScheme = compositionLocalOf { ColorScheme.Default }
+private val LocalColorScheme = compositionLocalOf { ColorScheme.Light }
 private val LocalTypography = compositionLocalOf { Typography.Default }
 
 val LocalComponentState = compositionLocalOf<ComponentState> { ComponentState.Default }
