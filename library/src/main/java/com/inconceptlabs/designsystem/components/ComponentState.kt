@@ -24,3 +24,9 @@ enum class InputFormState : ComponentState {
     Success,
     Error,
 }
+
+enum class ToggleState : ComponentState {
+    Default,
+    Pressed,
+    Disabled;
+}
