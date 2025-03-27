@@ -1,5 +1,6 @@
 package com.inconceptlabs.designsystem.components.buttons.token
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
@@ -26,8 +27,10 @@ interface ButtonTokens {
 
     fun iconSize(size: Size): Dp
 
+    fun horizontalArrangement(): Arrangement.Horizontal
+
     @Composable
-    fun strokeWidth(size: Size): Dp
+    fun borderWidth(size: Size): Dp
 
     @Composable
     fun textStyle(size: Size): TextStyle
@@ -36,7 +39,7 @@ interface ButtonTokens {
     fun containerColor(type: ButtonType, palette: PaletteColors): Color
 
     @Composable
-    fun strokeColor(type: ButtonType, palette: PaletteColors): Color
+    fun borderColor(type: ButtonType, palette: PaletteColors): Color
 
     @Composable
     fun contentColor(type: ButtonType, palette: PaletteColors): Color

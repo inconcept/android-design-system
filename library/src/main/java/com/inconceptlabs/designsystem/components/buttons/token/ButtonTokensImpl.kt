@@ -1,7 +1,9 @@
 package com.inconceptlabs.designsystem.components.buttons.token
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -66,8 +68,12 @@ object ButtonTokensImpl : ButtonTokens {
         }
     }
 
+    override fun horizontalArrangement(): Arrangement.Horizontal {
+        return Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
+    }
+
     @Composable
-    override fun strokeWidth(size: Size): Dp {
+    override fun borderWidth(size: Size): Dp {
         return LocalCoreTokens.current.strokeWidthBySize(size)
     }
 
@@ -112,7 +118,7 @@ object ButtonTokensImpl : ButtonTokens {
     }
 
     @Composable
-    override fun strokeColor(type: ButtonType, palette: PaletteColors): Color {
+    override fun borderColor(type: ButtonType, palette: PaletteColors): Color {
         return when (LocalComponentState.current) {
             ButtonState.Default -> {
                 when (type) {

@@ -8,7 +8,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -92,8 +91,8 @@ fun Button(
                 )
                 .border(
                     border = BorderStroke(
-                        width = strokeWidth(size),
-                        color = strokeColor(type, palette),
+                        width = borderWidth(size),
+                        color = borderColor(type, palette),
                     ),
                     shape = shape,
                 )
@@ -110,7 +109,7 @@ fun Button(
                     .requiredHeight(height = height(size))
                     .defaultMinSize(minWidth = if (hasMinWidth) minWidth(size) else Dp.Unspecified)
                     .padding(paddingValues = contentPadding(size)),
-                horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = horizontalArrangement(),
                 verticalAlignment = Alignment.CenterVertically,
                 content = {
                     CompositionLocalProvider(

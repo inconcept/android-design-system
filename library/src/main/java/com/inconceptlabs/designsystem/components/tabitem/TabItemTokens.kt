@@ -19,12 +19,12 @@ val LocalTabItemTokens = compositionLocalOf { ButtonTokens.TabItem }
 class TabItemTokens : ButtonTokens by IconButtonTokens {
 
     @Composable
-    override fun strokeWidth(size: Size): Dp {
+    override fun borderWidth(size: Size): Dp {
         return LocalCoreTokens.current.strokeWidthThin
     }
 
     @Composable
-    override fun strokeColor(type: ButtonType, palette: PaletteColors): Color {
+    override fun borderColor(type: ButtonType, palette: PaletteColors): Color {
         return when (LocalComponentState.current) {
             TabItemState.Default -> palette.alpha20
             TabItemState.Pressed -> palette.alpha20

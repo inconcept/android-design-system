@@ -1,8 +1,6 @@
 package com.inconceptlabs.designsystem.components.buttons
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.inconceptlabs.designsystem.R
 import com.inconceptlabs.designsystem.components.core.Icon
 import com.inconceptlabs.designsystem.components.core.Text
@@ -74,10 +71,7 @@ fun TextButton(
         interactionSource = interactionSource
     ) {
         if (startIcon != null) {
-            OptionalIcon(
-                painter = startIcon,
-                paddingValues = PaddingValues(end = 4.dp)
-            )
+            OptionalIcon(painter = startIcon)
         }
 
         Text(
@@ -87,23 +81,16 @@ fun TextButton(
         )
 
         if (endIcon != null) {
-            OptionalIcon(
-                painter = endIcon,
-                paddingValues = PaddingValues(start = 4.dp)
-            )
+            OptionalIcon(painter = endIcon)
         }
     }
 }
 
 @Composable
-private fun OptionalIcon(
-    painter: Painter,
-    paddingValues: PaddingValues,
-) {
+private fun OptionalIcon(painter: Painter) {
     Icon(
         painter = painter,
         modifier = Modifier
-            .size(LocalIconSize.current)
-            .padding(paddingValues),
+            .size(LocalIconSize.current),
     )
 }
