@@ -7,6 +7,7 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -23,6 +24,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAll
 import androidx.compose.ui.util.fastAny
 import androidx.fragment.app.Fragment
@@ -32,6 +34,21 @@ import com.inconceptlabs.designsystem.theme.colors.ColorScheme
 import com.inconceptlabs.designsystem.theme.indication.NoIndication
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
+
+/**
+ * Modifier for grouping components in previews.
+ * Mimics the appearance of a component group in Figma.
+ */
+internal val componentGroupModifier: Modifier =
+    Modifier
+        .dashedBorder(
+            strokeWidth = 1.dp,
+            dashWidth = 8.dp,
+            dashGap = 4.dp,
+            color = Color(0xFF7B61FF),
+            cornerRadius = 8.dp,
+        )
+        .padding(16.dp)
 
 @Suppress("FunctionName")
 fun Fragment.ProvideThemedContent(

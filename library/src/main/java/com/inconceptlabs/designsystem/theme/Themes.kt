@@ -19,6 +19,7 @@ import com.inconceptlabs.designsystem.components.input.tokens.LocalPasswordInput
 import com.inconceptlabs.designsystem.components.notification.tokens.LocalNotificationTokens
 import com.inconceptlabs.designsystem.components.tabitem.LocalTabItemTokens
 import com.inconceptlabs.designsystem.theme.colors.ColorScheme
+import com.inconceptlabs.designsystem.theme.colors.PaletteColors
 import com.inconceptlabs.designsystem.theme.indication.NoIndication
 import com.inconceptlabs.designsystem.theme.typography.Barlow
 import com.inconceptlabs.designsystem.theme.typography.Typography
@@ -30,6 +31,7 @@ val LocalComponentState = compositionLocalOf<ComponentState> { ComponentState.De
 val LocalTextStyle = compositionLocalOf { TextStyle.Default }
 val LocalContentColor = compositionLocalOf { Color.White }
 val LocalIconSize = compositionLocalOf { Dp.Unspecified }
+val LocalPaletteColors = compositionLocalOf { PaletteColors() }
 
 /**
  * Contains functions to access the current theme values provided
